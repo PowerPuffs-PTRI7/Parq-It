@@ -5,6 +5,8 @@ Parking can be troublesome - Parq-It helps by providing regional listings of par
 ## Purpose
 Parq-It allows for users to navigate to a location using Google Maps API, create a parking booking &/or host a rental, and proceed to complete the  transaction for the space utilizing Stripe API.
 
+Users have access to their library of hostings and bookings following authentication.
+
 ## Tech Stack
 MERN - MongoDB, ExpressJS, ReactJS, NodeJS
 
