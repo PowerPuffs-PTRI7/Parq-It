@@ -37,10 +37,20 @@ export const Login = () => {
       .catch((err) => console.log(err));
   };
 
+  const handleSignout = (e) => {
+    e.preventDefault();
+    sessionStorage.removeItem("access_token")
+    navigate('/', { replace: true});
+  }
+
   if (loggedIn) {
     setTimeout(() => {
       history.push("/dashboard");
     }, 0);
+
+    //change the button to sign out, so will need a onclick function to do this
+    //but how will we change the button name? thru state?
+    //and onclick, clear access_token from session storage to sign out the user
   }
 
   const signupPopup = (e) => {
