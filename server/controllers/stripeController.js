@@ -19,29 +19,28 @@ const stripeController = async (req, res, next) => {
   console.log(
     "yes---------------------------------------------------------------------------------------"
   );
-
-  try {
-    const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: mongoPriceQuery.address,
-            },
-            unit_amount: mongoPriceQuery.price * 100,
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    line_items: [
+      {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: mongoPriceQuery.address,
           },
-          quantity: mongoPriceQuery.size,
+          unit_amount: mongoPriceQuery.price * 100,
         },
-      ],
-      mode: "payment",
-      success_url: `http://localhost:8080/`,
-      cancel_url: `http://localhost:8080/`,
-    });
-    res.locals.session = session;
-    if (session) return next();
-  } catch (error) {
-    return next(error);
+        quantity: length,
+      },
+    ],
+    mode: "payment",
+    success_url: `http://localhost:8080/`,
+    cancel_url: `http://localhost:8080/`,
+  });
+  res.locals.session = session;
+
+  if (session) {
+    next();
   }
 
   // const session = await stripe.checkout.sessions.create({

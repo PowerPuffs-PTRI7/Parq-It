@@ -88,7 +88,10 @@ export const BookingForm = ({ hostName, address }) => {
             Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
           },
         }
-      )
+      ).then((res) => {
+        console.log(res.data.url)
+        window.location = res.data.url
+      })
       .then((res) => {
         if (res.status === 200) {
           alert("Booking has been created");
