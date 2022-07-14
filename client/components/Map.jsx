@@ -33,7 +33,7 @@ export default function Map({ data, zoom }) {
   });
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyCnkJANv6eYZSSLD7AUl_lJkees8dysiTI">
+    <LoadScript googleMapsApiKey="AIzaSyA_GKdfivr0O4RI8I_xGLF8ifP0olz3BcQ">
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}

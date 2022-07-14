@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 const app = express();
 const PORT = 3000;
 const cookieParser = require("cookie-parser");
-
+const stripeController = require("./controllers/stripeController");
 dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -15,10 +15,7 @@ app.use(cors());
 
 // Mongo Connection
 mongoose
-  .connect(process.env.mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.mongoURI)
   .then(() => {
     console.log("Connected to Mongo!");
   })
@@ -40,6 +37,10 @@ app.use("/build", express.static(path.join(__dirname, "../build")));
 // serve index.html on the route '/'
 app.get("/", (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, "../client/index.html"));
+});
+
+app.post("/checkout", stripeController, (req, res) => {
+  res.status(200).json({ url: res.locals.session.url });
 });
 
 // catch-all route handler for any requests to an unknown route
