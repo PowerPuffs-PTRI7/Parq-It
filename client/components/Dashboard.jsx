@@ -81,6 +81,7 @@ export default function Dashboard(state) {
   // { lat: 34.052235, lng: -118.243683, listings: [] }
 
   const listings = data.listings;
+  console.log('the listings are', listings)
 
   const spotElems = listings.map((ele, i) => {
     // convert latitude to longitude of the search to radians

@@ -7,6 +7,7 @@ const signupController = {};
 signupController.signUp = async (req, res, next) => {
   try {
     // check if username already exists
+    console.log("entered signup");
     const user = await User.findOne({ username: req.body.username });
     console.log("user:", user);
     if (user)
@@ -22,7 +23,7 @@ signupController.signUp = async (req, res, next) => {
       ...req.body,
       password: hashPassword,
     }).save();
-    console.log(newUser);
+    console.log("new user created!", newUser);
     return next();
   } catch (error) {
     res.status(500).send({ messsage: "error on signupController" });
