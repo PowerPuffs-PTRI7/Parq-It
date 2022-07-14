@@ -34,13 +34,15 @@ app.use("/api", apiRouter);
 // statically serve everything in the build folder on the route '/build'
 app.use("/build", express.static(path.join(__dirname, "../build")));
 
-// serve index.html on the route '/'
-app.get("/", (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, "../client/index.html"));
-});
 
 app.post("/checkout", stripeController, (req, res) => {
   res.status(200).json({ url: res.locals.session.url });
+});
+
+// serve index.html on the route '/'
+app.get("/*", (req, res) => {
+  console.log(5555)
+  return res.status(200).sendFile(path.join(__dirname, "../client/index.html"));
 });
 
 // catch-all route handler for any requests to an unknown route
