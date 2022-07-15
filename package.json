@@ -1,10 +1,10 @@
 {
   "name": "scratch-project",
   "version": "1.0.0",
-  "description": "Scratch Project - Team Goblin Shark",
+  "description": "Iteration Project - ",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "NODE_ENV=production nodemon server/server.js",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write \"***/**/*.{js,jsx}\"",

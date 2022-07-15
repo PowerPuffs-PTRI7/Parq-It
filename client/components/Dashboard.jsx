@@ -12,7 +12,6 @@ import Maps from "./Map.jsx";
 import ParkingSpot from "./ParkingSpot.jsx";
 import { useEffect, useState } from "react";
 import ParkingSpotTest from "./ParkingSpotTest.jsx";
-import Navbar from "./Navbar.jsx";
 
 export default function Dashboard(state) {
   const useStyles = makeStyles(() => ({
@@ -116,7 +115,6 @@ export default function Dashboard(state) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <Navbar/>
 
       <div
         className="filterBar"

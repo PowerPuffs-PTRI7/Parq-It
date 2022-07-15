@@ -11,6 +11,7 @@ import LoginPopup from "./LoginPopup.jsx";
 
 
 function Navbar(props) {
+  console.log(props);
   return (
     <div className="navBar" style={{ height: "70px" }} sx={{ flexGrow: 1 }}>
         <Box sx={{ flexGrow: 1 }}>
@@ -28,7 +29,7 @@ function Navbar(props) {
               >
                 book
               </Typography>
-              </ Link>
+            </ Link>
             </Button>
             <Button color="inherit" sx={{ flexGrow: 1 }}>
               <Typography
