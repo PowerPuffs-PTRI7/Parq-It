@@ -17,6 +17,9 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
 import { Login } from "./Login.jsx";
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -57,6 +60,7 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export const BookingForm = ({ hostName, address }) => {
+  const [value, setValue] = React.useState(new Date())
   const [createDate, setCreateDate] = useState("");
   const [createLength, setCreateLength] = useState(0);
   const [open, setOpen] = useState(false);
@@ -67,43 +71,54 @@ export const BookingForm = ({ hostName, address }) => {
     setOpen(false);
   };
 
+  //changes time and date
+  const handleChange = (newValue) => {
+    setValue(newValue);
+  };
+
   const handleBooking = (e) => {
-    const date = createDate;
-    const length = createLength;
 
-    e.preventDefault();
-    console.log("handleBooking post called");
-
-    axios
-      .post(
-        "/api/booking",
-        {
-          hostUsername: hostName,
-          bookingDate: date,
-          length: length,
-          location: address,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+    if(!createLength || !value) {
+      e.preventDefault();
+      alert('Please enter a duration and date.')
+    } else{
+      const date = value;
+      const length = createLength;
+  
+      e.preventDefault();
+      console.log("handleBooking post called");
+  
+      axios
+        .post(
+          "/api/booking",
+          {
+            hostUsername: hostName,
+            bookingDate: date,
+            length: length,
+            location: address,
           },
-        }
-      ).then((res) => {
-        console.log(res.data.url)
-        window.location = res.data.url
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          alert("Booking has been created");
-        }
-      })
-      .catch((err) => {
-        console.log(err.response.status);
-        if (err.response.status === 403) {
-          setOpen(true);
-          // alert("Please log in");
-        }
-      });
+          {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+            },
+          }
+        ).then((res) => {
+          console.log(res.data.url)
+          window.location = res.data.url
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            alert("Booking has been created");
+          }
+        })
+        .catch((err) => {
+          console.log(err.response.status);
+          if (err.response.status === 403) {
+            setOpen(true);
+            // alert("Please log in");
+          }
+        });
+    }
   };
   if (!open) {
     return (
@@ -124,13 +139,21 @@ export const BookingForm = ({ hostName, address }) => {
             label="Length"
             defaultValue=""
           />
-          <TextField
+          {/* <TextField
             onChange={(e) => setCreateDate(e.target.value)}
             required
             id="outlined-required"
             label="Date"
             defaultValue=""
-          />
+          /> */}
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DateTimePicker
+          label="DateTime picker"
+          value={value}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+        />
+        </LocalizationProvider>
           <Button
             onClick={handleBooking}
             type="submit"

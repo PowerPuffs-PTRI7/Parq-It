@@ -38,10 +38,7 @@ const stripeController = async (req, res, next) => {
     cancel_url: `http://localhost:8080/`,
   });
   res.locals.session = session;
-
-  if (session) {
-    next();
-  }
+  next();
 
   // const session = await stripe.checkout.sessions.create({
   //   payment_method_types: ["card"],
