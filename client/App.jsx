@@ -5,6 +5,7 @@ import Dashboard from "./components/Dashboard.jsx";
 import LandingPage from "./components/LandingPage.jsx";
 import "./styles.scss";
 import Navbar from "./components/Navbar.jsx";
+import axios from "axios";
 
 
 
@@ -12,22 +13,22 @@ import Navbar from "./components/Navbar.jsx";
 const App = (props) => {
 
 
-  const [userInfo, setUserInfo] = useState({user_id:null});
+  const [userInfo, setUserInfo] = useState({user_id: null});
   const [tripInfo, setTripInfo] = useState([]);
 
   //conditional check on sessionstorage to grab user_id;
-  const session_id = JSON.parse(sessionStorage.getItem('session_id'));
+  const session_id = sessionStorage.getItem('access_token');
   const isInitialMount = useRef(true);
 
   useEffect (() => {
-    if (isInitialMount.current && window.sessionStorage.getItem('session_id')) {
-      axios.get('http://localhost:3000/session', {
-        params: {
-          session_id
+    if (isInitialMount.current && session_id) {
+      axios.get('/api/checkLogin', {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
         }
       })
       .then((response) => {
-        setUserInfo(response.data);
+        setUserInfo({user_id: response.data});
         isInitialMount.current = false;
         console.log('data from session_id', response.data)
       })

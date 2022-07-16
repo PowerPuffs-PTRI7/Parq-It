@@ -7,11 +7,10 @@ import Host from "./Host.jsx";
 import { Link } from "react-router-dom";
 import logo from "../assets/blueParq.png";
 import AboutPage from "./About.jsx";
-import LoginPopup from "./LoginPopup.jsx";
+import LoginButton from "./LoginButton.jsx";
 
 
 function Navbar(props) {
-  console.log(props);
   return (
     <div className="navBar" style={{ height: "70px" }} sx={{ flexGrow: 1 }}>
         <Box sx={{ flexGrow: 1 }}>
@@ -72,7 +71,7 @@ function Navbar(props) {
                   color: "#36454F",
                 }}
               >
-                 <LoginPopup />
+                 <LoginButton user_id={props.userInfo.user_id}/>
               </Typography>
             </Button>
           </Toolbar>
