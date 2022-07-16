@@ -52,6 +52,8 @@ apiController.createBooking,
   return res.status(200).json(res.locals.booking);
 });
 
+
+//get requests for all listings
 router.get("/allbookings", getAllListingsController.getAllBookings, (req, res) => {
   return res.status(200).json(res.locals.bookings);
 })

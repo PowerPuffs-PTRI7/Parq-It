@@ -20,7 +20,7 @@ import AboutPage from "./About.jsx";
 import Host from "./Host.jsx";
 import ParkingSpotTest from "./ParkingSpotTest.jsx";
 
-export default function LoggedinPage(state) {
+export default function LoggedinPage() {
   const useStyles = makeStyles(() => ({
     textField: {
       width: "98%",
@@ -43,48 +43,26 @@ export default function LoggedinPage(state) {
 
   const classes = useStyles();
 
-  const [address, setAddress] = useState("");
-  const [zoom, setZoom] = useState(10);
-  const [data, setData] = useState({
-    lat: 34.052235,
-    lng: -118.243683,
-    listings: [],
-  });
+  const [data, setData] = useState({});
 
-  const props = {
-    data: data,
-    isVisible: true,
-    zoom: zoom,
-  };
+  //how to pass the username with the request?
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .post("http://localhost:3000/api/all", {
-        address: address,
-      })
-      .then((res) => {
-        setData(res.data);
-        setZoom(13);
+  useEffect(
+    () => {
+      axios.get("http://localhost:3000/api/allbookings")
+      .then(res => {
+        console.log(res)
+        setData(res.data)
+        //what is is in res.data
       })
       .catch((err) => {
         console.log(`Error occured in useEffect: ${err}`);
       });
-  };
-
-  useEffect(
-    () => {
-      setData(state.location.data ? state.location.data : data);
-      setZoom(13);
     },[]
   );
-  // { lat: 34.052235, lng: -118.243683, listings: [] }
 
-  const listings = data.listings;
-  console.log('the listings are', listings)
-
-  const spotElems = listings.map((ele, i) => {
-    
+  const listingElems = listings.map((ele, i) => {
+    //use this func to populate the tiles
   });
 
   return (
