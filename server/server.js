@@ -26,10 +26,12 @@ mongoose
 // require routers here:
 const apiRouter = require("./routes/api");
 const userRouter = require("./routes/user");
+const stripeRouter = require("./routes/stripe");
 
 // define route handlers here:
 app.use("/api/users", userRouter);
 app.use("/api", apiRouter);
+app.use("/success", stripeRouter);
 
 // statically serve everything in the build folder on the route '/build'
 app.use("/build", express.static(path.join(__dirname, "../build")));

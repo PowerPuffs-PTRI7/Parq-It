@@ -6,16 +6,20 @@ const { Location } = require("../models/userModel");
 const stripeController = async (req, res, next) => {
   console.log("entered stripe body ->", req.body);
   // Destructure what was sent in the request body
-  const { hostUsername, bookingDate, length, location } = req.body;
-  // parking will be an object
-  console.log("hostusername -> ", hostUsername);
+  let { hostUsername, bookingDate, length, location } = req.body;
+  location = location.split(" ").join("_");
+  console.log("location is", location);
+  console.log(typeof location);
+  console.log(
+    `http://localhost:8080/success/${hostUsername}/${bookingDate}/${length}/${location}`
+  );
   //destructure parking, grab the spot rate and hours
 
   // get price for each dish
   //const params = [dishId];
   let mongoPriceQuery = await Location.findOne({ username: hostUsername });
-  console.log("mongoPriceQuery->", mongoPriceQuery);
-  console.log("address", mongoPriceQuery.size);
+  //console.log("mongoPriceQuery->", mongoPriceQuery);
+  //console.log("address", mongoPriceQuery.size);
   console.log(
     "yes---------------------------------------------------------------------------------------"
   );
@@ -34,7 +38,7 @@ const stripeController = async (req, res, next) => {
       },
     ],
     mode: "payment",
-    success_url: `http://localhost:8080/`,
+    success_url: `http://localhost:8080/success/${hostUsername}/${bookingDate}/${length}/${location}`,
     cancel_url: `http://localhost:8080/`,
   });
   res.locals.session = session;

@@ -110,6 +110,35 @@ apiController.createBooking = (req, res, next) => {
   );
 };
 
+apiController.createBookingAPI = (req, res, next) => {
+  //get input from user request (TBD)
+  const username = res.locals.username;
+  const { hostUsername, bookingDate, length, location } = req.params;
+  console.log("username:", username);
+  console.log("req", req.body);
+  Booking.create(
+    {
+      clientUsername: username,
+      hostUsername: hostUsername,
+      bookingDate: bookingDate,
+      length: length,
+      location,
+    },
+    (err, docs) => {
+      if (err) {
+        return next({
+          log: `apiController.getLocation error :${err}`,
+          message: {
+            err: "Error occured in getLocation",
+          },
+        });
+      }
+      res.locals.booking = docs;
+      return next();
+    }
+  );
+};
+
 // "Get booking" controller
 apiController.getBooking = async (req, res, next) => {
   // find booking that was stored in database

@@ -15,27 +15,24 @@ module.exports = {
         test: /\.js$|jsx/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
-        }
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
+        },
       },
       {
         test: /\.(css|scss)$/,
         exclude: /(node_modules|bower_components)/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ],
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
         use: {
-          loader: 'url-loader?limit=100000'
-        }
-    },
-    ]
+          loader: "url-loader?limit=100000",
+        },
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -60,6 +57,10 @@ module.exports = {
         target: "http://localhost:3000/",
         secure: false,
       },
+      "/success/**": {
+        target: "http://localhost:3000/",
+        secure: false,
+      },
     },
-  }
+  },
 };

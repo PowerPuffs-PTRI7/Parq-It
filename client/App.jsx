@@ -13,6 +13,7 @@ const App = (props) => {
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/success" component={LandingPage} />
           </Switch>
         </Router>
       </main>
