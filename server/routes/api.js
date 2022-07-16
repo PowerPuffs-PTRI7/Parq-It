@@ -56,8 +56,8 @@ router.get("/allbookings", getAllListingsController.getAllBookings, (req, res) =
   return res.status(200).json(res.locals.bookings);
 })
 
-router.get("/allbookings", getAllListingsController.getAllhostings, (req, res) => {
-  return res.status(200).json(res.locals.bookings);
+router.get("/allhostings", getAllListingsController.getAllhostings, (req, res) => {
+  return res.status(200).json(res.locals.hostings);
 })
 
 // post for filter bookings 
