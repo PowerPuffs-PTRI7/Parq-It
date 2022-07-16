@@ -162,11 +162,22 @@ img.archway {
   z-index: 1;
 }
 
+.bookingDiv {
+  border: "5px";
+  border-color: #36454F;
+  scroll-behavior: smooth;
+  overflow-y: scroll; 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
 
-
-.rightTiles {
 }
 
-.bookingAndHostingDiv {
-
+.hostingDiv {
+  scroll-behavior: smooth;
+  overflow-y: scroll; 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  
 }

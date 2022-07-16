@@ -6,6 +6,7 @@ const apiController = require("../controllers/apiController");
 const loginController = require("../controllers/loginController");
 const cookieController = require("../controllers/cookieController");
 const googleRequestController = require("../controllers/googleController");
+const getAllListingsController = reuire("../constrollers/getAllListingsController")
 
 // get requests for a single location - When user clicks a marker on the map
 router.get("/location", apiController.getLocation, (req, res) => {
@@ -50,6 +51,14 @@ apiController.createBooking,
 (req, res) => {
   return res.status(200).json(res.locals.booking);
 });
+
+router.get("/allbookings", getAllListingsController.getAllBookings, (req, res) => {
+  return res.status(200).json(res.locals.bookings);
+})
+
+router.get("/allbookings", getAllListingsController.getAllhostings, (req, res) => {
+  return res.status(200).json(res.locals.bookings);
+})
 
 // post for filter bookings 
 // router.post("/price", apiController.getPriceLocation, (req,res,next)=> {

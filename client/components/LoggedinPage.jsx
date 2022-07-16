@@ -84,40 +84,7 @@ export default function LoggedinPage(state) {
   console.log('the listings are', listings)
 
   const spotElems = listings.map((ele, i) => {
-    // convert latitude to longitude of the search to radians
-    const radLatSearch = (Math.PI * data.lat) / 180;
-    const radLngSearch = (Math.PI * data.lng) / 180;
-
-    // convert latitude to longitude of the parking spot to radians
-    const radLatSpot = (Math.PI * ele.coordinates.lat) / 180;
-    const radLngSpot = (Math.PI * ele.coordinates.lng) / 180;
-
-    // calculate the great circle
-    var R = 6371; // km
-    var dLat = radLatSpot - radLatSearch;
-    var dLon = radLngSpot - radLngSearch;
-
-    var a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.sin(dLon / 2) *
-        Math.sin(dLon / 2) *
-        Math.cos(radLatSearch) *
-        Math.cos(radLatSpot);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c;
-
-    // console.log(d);
-    // check if the distance is within 5 miles
-    if (d > 8.04672) {
-      props.isVisible = false;
-    } else {
-      props.isVisible = true;
-    }
-
-    // only return spots with isVisible set to true
-    if (props.isVisible) {
-      return <ParkingSpotTest key={i} info={ele} {...props} />;
-    }
+    
   });
 
   return (
@@ -266,14 +233,32 @@ export default function LoggedinPage(state) {
           className="rightTiles"
           style={{ width: "50%", height: "100%", float: "right" }}
         >
-          {/* this is where we need to put our two divs */}
-          <div className="bookingAndHostingDiv" 
-          style={{ width: "100%", height: "50%"}} >
-           Bookings</div>
+          <div className="bookingDiv" 
+          style={{ width: "100%", height: "50%" }} 
+          >
+           <Typography
+            component="div"
+            sx={{
+              textTransform: "none",
+              fontWeight: "light",
+              color: "#36454F",
+              fontSize: "20px"
+            }}
+           > bookings </Typography></div>
           <br></br>
-          <div className="hostingAndHostingDiv" 
-          style={{ width: "100%", height: "50%"}}
-          >Hostings</div>
+          <div className="hostingDiv" 
+          style={{ width: "100%", height: "50%", border: "2px solid blue" }}
+          >
+            <Typography
+            component="div"
+            sx={{
+              textTransform: "none",
+              fontWeight: "light",
+              color: "#36454F",
+              fontSize: "20px"
+            }}
+           > hostings </Typography>
+          </div>
         </div>
       </div>
     </div>

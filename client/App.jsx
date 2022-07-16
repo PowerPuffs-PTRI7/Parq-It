@@ -12,9 +12,11 @@ const App = (props) => {
       <main>
         <Router>
           <Switch>
-            <Route exact path="/" component={LandingPage} />
+            {/* change root path ("/") to userpage to design the page */}
+            {/* <Route exact path="/" component={LandingPage} /> */}
+            <Route exact path="/" component={LoggedinPage} />
             <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/userpage" component={LoggedinPage} />
+            {/* <Route exact path="/userpage" component={LoggedinPage} /> */}
           </Switch>
         </Router>
       </main>
