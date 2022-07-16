@@ -21,4 +21,13 @@ router.post(
   }
 );
 
+//connected to logged in user
+// router.get(
+//   "/userpage",
+//   // cookieController.setCookie
+//   (req,res) => {
+//     res.status(201).json("You are inside users page")
+//   }
+// )
+
 module.exports = router;
