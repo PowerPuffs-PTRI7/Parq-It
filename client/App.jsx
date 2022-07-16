@@ -30,7 +30,6 @@ const App = (props) => {
       .then((response) => {
         setUserInfo({user_id: response.data});
         isInitialMount.current = false;
-        console.log('data from session_id', response.data)
       })
       .catch(err => {
         console.log(err);
@@ -45,18 +44,12 @@ const App = (props) => {
     <div className="router">
       <main>
         <Navbar setUserInfo={setUserInfo} userInfo={userInfo} />
-          <Switch>
-          {/* <Route
-            path="/signup"
-            element={userInfo.user_id ? <NavSignedIn setUserInfo={setUserInfo} userInfo={userInfo} /> : <NavSignUp />}
-          />
-          <Route
-            path="/*"
-            element={userInfo.user_id ? <NavSignedIn setUserInfo={setUserInfo} userInfo={userInfo} /> : <NavSignIn />}
-          /> */}
-            <Route exact path="/" component={LandingPage} />
-            <Route exact path="/dashboard" component={Dashboard} />
-          </Switch>
+          <Route exact path="/">
+            <LandingPage />
+          </Route>
+          <Route exact path="/dashboard">
+            <Dashboard />
+          </Route>
       </main>
     </div>
     </Router>

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Component } from "react";
 import axios from "axios";
 import "../styles.scss";
 import Typography from "@mui/material/Typography";
@@ -12,6 +11,7 @@ import Maps from "./Map.jsx";
 import ParkingSpot from "./ParkingSpot.jsx";
 import { useEffect, useState } from "react";
 import ParkingSpotTest from "./ParkingSpotTest.jsx";
+import { useLocation } from "react-router";
 
 export default function Dashboard(state) {
   const useStyles = makeStyles(() => ({
@@ -35,6 +35,7 @@ export default function Dashboard(state) {
   }));
 
   const classes = useStyles();
+  const location = useLocation();
 
   const [address, setAddress] = useState("");
   const [zoom, setZoom] = useState(10);
@@ -67,7 +68,7 @@ export default function Dashboard(state) {
 
   useEffect(
     () => {
-      setData(state.location.data ? state.location.data : data);
+      setData(location.data ? location.data : data);
       setZoom(13);
     },[]
   );
