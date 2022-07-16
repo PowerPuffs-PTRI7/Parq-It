@@ -121,8 +121,161 @@ export default function LoggedinPage(state) {
   });
 
   return (
-    <>
-    <button> BLAH </button>
-    </>
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div className="navBar" style={{ height: "70px" }} sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1 }}>
+          <Toolbar>
+            <Button color="inherit" sx={{ flexGrow: 1 }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  textTransform: "none",
+                  fontWeight: "light",
+                  color: "#36454F",
+                }}
+              >
+                book
+              </Typography>
+            </Button>
+            <Button color="inherit" sx={{ flexGrow: 1 }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  textTransform: "none",
+                  fontWeight: "light",
+                  color: "#36454F",
+                }}
+              >
+                <Host />
+              </Typography>
+            </Button>
+            <Link to="/">
+              <Button>
+                <img className="websiteLogo" src={logo} />
+              </Button>
+            </Link>
+            <Button color="inherit" sx={{ flexGrow: 1 }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  textTransform: "none",
+                  fontWeight: "light",
+                  color: "#36454F",
+                }}
+              >
+                <AboutPage />
+              </Typography>
+            </Button>
+            <Button color="inherit" sx={{ flexGrow: 1 }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  textTransform: "none",
+                  fontWeight: "light",
+                  color: "#36454F",
+                }}
+              >
+                 <LoginPopup />
+              </Typography>
+            </Button>
+          </Toolbar>
+        </Box>
+      </div>
+      <div
+        className="filterBar"
+        style={{ height: "40px" }}
+        sx={{ flexGrow: 1 }}
+      >
+        <div
+          className="leftFilter"
+          style={{ width: "30%", float: "left", marginLeft: "10px" }}
+        >
+          <form onSubmit={handleSubmit}>
+            <TextField
+              id="standard-search"
+              variant="outlined"
+              label="city, state, zip code"
+              className={classes.textField}
+              value={address}
+              size="small"
+              onChange={(e) => setAddress(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon sx={{ color: "#B9D8D8" }} />
+                  </InputAdornment>
+                ),
+              }}
+            ></TextField>
+          </form>
+        </div>
+
+        <div className="rightFilter" style={{ width: "60%", float: "right" }}>
+          <Button className="filterPrice" color="inherit" sx={{ width: 10 }}>
+            <Typography
+              component="div"
+              sx={{
+                textTransform: "none",
+                fontWeight: "light",
+                color: "#36454F",
+              }}
+            >
+              price
+            </Typography>
+          </Button>
+          <Button className="filterPrice" color="inherit" sx={{ width: 10 }}>
+            <Typography
+              // variant="h6"
+              component="div"
+              sx={{
+                textTransform: "none",
+                fontWeight: "light",
+                color: "#36454F",
+              }}
+            >
+              size
+            </Typography>
+          </Button>
+          <Button className="filterPrice" color="inherit" sx={{ width: 10 }}>
+            <Typography
+              // variant="h6"
+              component="div"
+              sx={{
+                textTransform: "none",
+                fontWeight: "light",
+                color: "#36454F",
+              }}
+            >
+              type
+            </Typography>
+          </Button>
+        </div>
+      </div>
+      <div className="mapAndTiles" style={{ height: `calc( 100vh - 145px )` }}>
+        <div
+          className="leftMap"
+          style={{ width: "49%", height: "100%", float: "left" }}
+        >
+          <Maps className="map" {...props} />
+        </div>
+        <div
+          className="rightTiles"
+          style={{ width: "50%", height: "100%", float: "right" }}
+        >
+          {/* this is where we need to put our two divs */}
+          <div className="bookingAndHostingDiv" 
+          style={{ width: "100%", height: "50%"}} >
+           Bookings</div>
+          <br></br>
+          <div className="hostingAndHostingDiv" 
+          style={{ width: "100%", height: "50%"}}
+          >Hostings</div>
+        </div>
+      </div>
+    </div>
   );
 }

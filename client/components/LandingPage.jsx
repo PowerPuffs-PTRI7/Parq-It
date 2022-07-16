@@ -18,6 +18,7 @@ import TextField from "@mui/material/TextField";
 import LoginPopup from "./LoginPopup.jsx"
 import AboutPage from "./About.jsx"
 import Host from "./Host.jsx"
+import LoggedinPage from "./LoggedinPage.jsx";
 
 
 export default function LandingPage() {
@@ -73,7 +74,10 @@ export default function LandingPage() {
         <Box sx={{ flexGrow: 1 }}>
           <Toolbar>
             <Button color="inherit" sx={{ flexGrow: 1 }}>
+              {/* changed the link to userpage to test the userpage, previous code is below */}
             <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+            {/* <Link to="/userpage" style={{ textDecoration: 'none' }}> */}
+
               <Typography
                 variant="h6"
                 component="div"
