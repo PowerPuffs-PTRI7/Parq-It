@@ -51,6 +51,10 @@ apiController.createBooking,
   return res.status(200).json(res.locals.booking);
 });
 
+router.get('/checkLogin', cookieController.verifyCookie, (req, res) => {
+  return res.status(200).json(res.locals.username);
+});
+
 // post for filter bookings 
 // router.post("/price", apiController.getPriceLocation, (req,res,next)=> {
 //   return res.status(200).json();

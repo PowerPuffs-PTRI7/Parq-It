@@ -11,7 +11,6 @@ import { makeStyles } from "@material-ui/core";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@mui/material/TextField";
-import Navbar from "./Navbar.jsx";
 
 
 export default function LandingPage() {
@@ -64,9 +63,9 @@ export default function LandingPage() {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
 
-      <Navbar />
       <div className="topoSearch" style={{ height: "350px" }}>
         <img className="topo" src={topoBackground} width="100%"></img>
+
         <div className="landingSearch">
           <form onSubmit={handleSubmit} >
             <TextField
