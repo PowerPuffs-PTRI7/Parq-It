@@ -103,8 +103,8 @@ export const BookingForm = ({ hostName, address }) => {
             },
           }
         ).then((res) => {
-          console.log(res.data.url)
-          window.location = res.data.url
+          console.log('the redirect is supposed to be', res.data)
+          window.location = res.data
         })
         .then((res) => {
           if (res.status === 200) {

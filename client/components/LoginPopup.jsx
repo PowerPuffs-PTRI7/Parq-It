@@ -82,7 +82,7 @@ export default function LoginPopup() {
             fontWeight: "light",
             color: "#36454F",
           }}>
-          log In
+          log in
         </Typography>
       </Button>
       <BootstrapDialog

@@ -1,10 +1,10 @@
 {
   "name": "scratch-project",
   "version": "1.0.0",
-  "description": "Scratch Project - Team Goblin Shark",
+  "description": "Iteration Project - ",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "NODE_ENV=production nodemon server/server.js",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write \"***/**/*.{js,jsx}\"",
@@ -33,8 +33,8 @@
     "bootstrap": "^5.2.0-beta1",
     "cors": "^2.8.5",
     "express": "^4.18.1",
-    "google-maps-react": "^2.0.6",
     "moment": "^2.29.4",
+    "google-map-react": "^2.2.0",
     "mongoose": "^6.4.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.4.0",

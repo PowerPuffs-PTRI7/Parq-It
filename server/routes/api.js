@@ -53,15 +53,20 @@ router.post(
   "/booking",
   cookieController.verifyCookie,
   stripeController,
-  apiController.createBooking,
   (req, res) => {
+    //after stripeController, redirect to URL /success
+    //if /success -> apicontroller
+    //issue: how we do grab the booking data?
     console.log("the session url is", res.locals.session.url);
-    return res.status(200).json({ url: res.locals.session.url });
+    return res.status(200).json(res.locals.session.url);
   }
 );
 
-// post for filter bookings
-// router.post("/price", apiController.getPriceLocation, (req,res,next)=> {
+router.get("/checkLogin", cookieController.verifyCookie, (req, res) => {
+  return res.status(200).json(res.locals.username);
+});
+
+// post for filter bookings // router.post("/price", apiController.getPriceLocation, (req,res,next)=> {
 //   return res.status(200).json();
 // });
 

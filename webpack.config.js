@@ -45,6 +45,7 @@ module.exports = {
       directory: path.resolve(__dirname, "build"),
       publicPath: "/",
     },
+    historyApiFallback: true,
     open: true,
     hot: true,
     liveReload: true,
