@@ -4,7 +4,8 @@ const getAllListingsController = {};
 
 // "Get all bookings" controller
 getAllListingsController.getAllBookings = async (req, res, next) => {
-  // find bookings that was stored in database
+  console.log(req)
+  // find all of users bookings that was stored in database associated with that username
   const { username } = req.body;
   await Booking.find({ clientUsername: username }).then((result) => {
     if (result) {

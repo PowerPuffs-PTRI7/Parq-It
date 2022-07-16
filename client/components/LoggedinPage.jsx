@@ -43,26 +43,109 @@ export default function LoggedinPage() {
 
   const classes = useStyles();
 
-  const [data, setData] = useState({});
+  // const [data, setData] = useState({});
 
   //how to pass the username with the request?
 
-  useEffect(
-    () => {
-      axios.get("http://localhost:3000/api/allbookings")
-      .then(res => {
-        console.log(res)
-        setData(res.data)
-        //what is is in res.data
+  //I used useEffect to mount data once for now
+  //i guess the page will render after they click login
+
+  // useEffect(
+  //   () => {
+  //     axios.get("http://localhost:3000/api/allbookings")
+  //     .then(res => {
+  //       console.log(res)
+  //       setData(res.data)
+  //       //ok so we have to see what res.data is giving us
+  //       //yes
+  //       // ok im going to see if we can split off real quick
+  //       // also need to figure out how to pass the username to the req body
+  //     })
+  //     .catch((err) => {
+  //       console.log(`Error occured in useEffect: ${err}`);
+  //     });
+  //   },[]
+  // );
+
+  // const listingElems = listings.map((ele, i) => {
+  //   //use this func to populate the tiles
+  // });
+
+  const [address, setAddress] = useState("");
+  const [zoom, setZoom] = useState(10);
+  const [data, setData] = useState({
+    lat: 34.052235,
+    lng: -118.243683,
+    listings: [],
+  });
+
+  const props = {
+    data: data,
+    isVisible: true,
+    zoom: zoom,
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3000/api/all", {
+        address: address,
+      })
+      .then((res) => {
+        setData(res.data);
+        setZoom(13);
       })
       .catch((err) => {
         console.log(`Error occured in useEffect: ${err}`);
       });
+  };
+
+  useEffect(
+    () => {
+      setData(state.location.data ? state.location.data : data);
+      setZoom(13);
     },[]
   );
+  // { lat: 34.052235, lng: -118.243683, listings: [] }
 
-  const listingElems = listings.map((ele, i) => {
-    //use this func to populate the tiles
+  const listings = data.listings;
+  console.log('the listings are', listings)
+
+  const spotElems = listings.map((ele, i) => {
+    // convert latitude to longitude of the search to radians
+    const radLatSearch = (Math.PI * data.lat) / 180;
+    const radLngSearch = (Math.PI * data.lng) / 180;
+
+    // convert latitude to longitude of the parking spot to radians
+    const radLatSpot = (Math.PI * ele.coordinates.lat) / 180;
+    const radLngSpot = (Math.PI * ele.coordinates.lng) / 180;
+
+    // calculate the great circle
+    var R = 6371; // km
+    var dLat = radLatSpot - radLatSearch;
+    var dLon = radLngSpot - radLngSearch;
+
+    var a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.sin(dLon / 2) *
+        Math.sin(dLon / 2) *
+        Math.cos(radLatSearch) *
+        Math.cos(radLatSpot);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+
+    // console.log(d);
+    // check if the distance is within 5 miles
+    if (d > 8.04672) {
+      props.isVisible = false;
+    } else {
+      props.isVisible = true;
+    }
+
+    // only return spots with isVisible set to true
+    if (props.isVisible) {
+      return <ParkingSpotTest key={i} info={ele} {...props} />;
+    }
   });
 
   return (
@@ -139,7 +222,7 @@ export default function LoggedinPage() {
           className="leftFilter"
           style={{ width: "30%", float: "left", marginLeft: "10px" }}
         >
-          <form onSubmit={handleSubmit}>
+          {/* <form onSubmit={handleSubmit}>
             <TextField
               id="standard-search"
               variant="outlined"
@@ -156,7 +239,7 @@ export default function LoggedinPage() {
                 ),
               }}
             ></TextField>
-          </form>
+          </form> */}
         </div>
 
         <div className="rightFilter" style={{ width: "60%", float: "right" }}>
