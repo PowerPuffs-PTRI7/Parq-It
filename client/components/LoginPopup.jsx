@@ -71,32 +71,47 @@ export default function LoginPopup() {
     setOpen(false);
   };
 
-  return (
-    <div>
-      <div onClick={handleClickOpen} color="inherit" sx={{ flexGrow: 1 }}>
+  return (<>
+    <Button color="inherit" onClick={handleClickOpen} sx={{ flexGrow: 1 }}>
       <Typography
-          variant="h6"
-          component="div"
-          sx={{
-            textTransform: "none",
-            fontWeight: "light",
-            color: "#36454F",
-          }}>
-          log in
-        </Typography>
-      </div>
-      <BootstrapDialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
+        variant="h6"
+        component="div"
+        sx={{
+          textTransform: "none",
+          fontWeight: "light",
+          color: "#36454F",
+        }}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          
-        </BootstrapDialogTitle> 
-         <DialogContent dividers> 
-          <Login handleClose={handleClose} />
-        </DialogContent>
-      </BootstrapDialog>
-    </div>
+        <div>
+          <div color="inherit" sx={{ flexGrow: 1 }}>
+          <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                textTransform: "none",
+                fontWeight: "light",
+                color: "#36454F",
+              }}>
+              <div className='nav-text'>
+                log in
+             </div>
+            </Typography>
+          </div>
+        </div>
+      </Typography>
+    </Button>
+    <BootstrapDialog
+      onClose={handleClose}
+      aria-labelledby="customized-dialog-title"
+      open={open}
+    >
+      <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+        
+      </BootstrapDialogTitle> 
+      <DialogContent dividers> 
+        <Login handleClose={handleClose} />
+      </DialogContent>
+    </BootstrapDialog>
+    </>
   );
 }

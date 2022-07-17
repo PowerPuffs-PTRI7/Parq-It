@@ -75,45 +75,60 @@ export default function AboutPage() {
 //     },
 //   }));
 
-  return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <div color="inherit" sx={{ flexGrow: 1 }} onClick={handleClickOpen}>
+  return (<>
+    <Button color="inherit" onClick={handleClickOpen} sx={{ flexGrow: 1 }}>
       <Typography
-          variant="h6"
-          component="div"
-          sx={{
-            textTransform: "none",
-            fontWeight: "light",
-            color: "#36454F",
-          }}>
-        about        
-</Typography>
-      </div>
-      <BootstrapDialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
+        variant="h6"
+        component="div"
+        sx={{
+          textTransform: "none",
+          fontWeight: "light",
+          color: "#36454F",
+        }}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          about
-        </BootstrapDialogTitle>
-        <DialogContent dividers>
-          <Typography gutterBottom>
-            Info about parq...
-          </Typography>
-          <Typography gutterBottom>
-            info about booker...
-          </Typography>
-          <Typography gutterBottom>
-            info about host...
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <div autoFocus onClick={handleClose}>
-            close
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div color="inherit" sx={{ flexGrow: 1 }}>
+          <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                textTransform: "none",
+                fontWeight: "light",
+                color: "#36454F",
+              }}>
+            <div className='nav-text'>
+              about
+            </div>
+    </Typography>
           </div>
-        </DialogActions>
-      </BootstrapDialog>
-    </div>
+        </div>
+      </Typography>
+    </Button>
+    <BootstrapDialog
+      onClose={handleClose}
+      aria-labelledby="customized-dialog-title"
+      open={open}
+    >
+      <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+        about
+      </BootstrapDialogTitle>
+      <DialogContent dividers>
+        <Typography gutterBottom>
+          Info about parq...
+        </Typography>
+        <Typography gutterBottom>
+          info about booker...
+        </Typography>
+        <Typography gutterBottom>
+          info about host...
+        </Typography>
+      </DialogContent>
+      <DialogActions>
+        <div autoFocus onClick={handleClose}>
+          close
+        </div>
+      </DialogActions>
+    </BootstrapDialog>
+    </>
   );
 }
