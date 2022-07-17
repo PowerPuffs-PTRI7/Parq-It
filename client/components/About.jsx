@@ -77,7 +77,7 @@ export default function AboutPage() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <Button color="inherit" sx={{ flexGrow: 1 }} onClick={handleClickOpen}>
+      <div color="inherit" sx={{ flexGrow: 1 }} onClick={handleClickOpen}>
       <Typography
           variant="h6"
           component="div"
@@ -88,7 +88,7 @@ export default function AboutPage() {
           }}>
         about        
 </Typography>
-      </Button>
+      </div>
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -109,9 +109,9 @@ export default function AboutPage() {
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
+          <div autoFocus onClick={handleClose}>
             close
-          </Button>
+          </div>
         </DialogActions>
       </BootstrapDialog>
     </div>

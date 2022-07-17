@@ -73,7 +73,7 @@ export default function LoginPopup() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen} color="inherit" sx={{ flexGrow: 1 }}>
+      <div onClick={handleClickOpen} color="inherit" sx={{ flexGrow: 1 }}>
       <Typography
           variant="h6"
           component="div"
@@ -84,7 +84,7 @@ export default function LoginPopup() {
           }}>
           log in
         </Typography>
-      </Button>
+      </div>
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
