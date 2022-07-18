@@ -20,7 +20,7 @@ import AboutPage from "./About.jsx";
 import Host from "./Host.jsx";
 import ParkingSpotTest from "./ParkingSpotTest.jsx";
 
-export default function LoggedinPage() {
+export default function LoggedinPage(state) {
   const useStyles = makeStyles(() => ({
     textField: {
       width: "98%",

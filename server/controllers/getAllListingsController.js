@@ -3,11 +3,10 @@ const { Location, Booking } = require("../models/userModel");
 const getAllListingsController = {};
 
 // "Get all bookings" controller
-getAllListingsController.getAllBookings = async (req, res, next) => {
-  console.log(req)
+getAllListingsController.getAllBookings = (req, res, next) => {
   // find all of users bookings that was stored in database associated with that username
   const { username } = req.body;
-  await Booking.find({ clientUsername: username }).then((result) => {
+  Booking.find({ clientUsername: username }).then((result) => {
     if (result) {
       console.log("Bookings found in database!");
       res.locals.bookings = result;

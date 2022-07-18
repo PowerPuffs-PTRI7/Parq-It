@@ -55,7 +55,6 @@ apiController.createBooking,
 
 //get requests for all listings
 router.post("/allbookings", getAllListingsController.getAllBookings, (req, res) => {
-  console.log("this is the res: ", res)
   return res.status(200).json(res.locals.bookings);
 })
 
