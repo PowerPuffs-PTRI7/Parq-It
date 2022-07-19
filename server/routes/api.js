@@ -58,7 +58,7 @@ router.post("/allbookings", getAllListingsController.getAllBookings, (req, res) 
   return res.status(200).json(res.locals.bookings);
 })
 
-router.post("/allhostings", getAllListingsController.getAllhostings, (req, res) => {
+router.post("/allhostings", getAllListingsController.getAllHostings, (req, res) => {
   return res.status(200).json(res.locals.hostings);
 })
 
@@ -67,7 +67,8 @@ router.post("/allhostings", getAllListingsController.getAllhostings, (req, res) 
 //   return res.status(200).json();
 // });
 
-// router.post("/test", cookieController.verifyCookie, (req, res) => {
+//testing route
+// router.post("/test", (req, res) => {
 //   return res.status(200).json("Logged in");
 // });
 

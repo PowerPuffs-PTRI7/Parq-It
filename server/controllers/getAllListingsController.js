@@ -24,10 +24,10 @@ getAllListingsController.getAllBookings = (req, res, next) => {
 };
 
 // "Get all hostings" controller
-getAllListingsController.getAllHostings = async (req, res, next) => {
+getAllListingsController.getAllHostings = (req, res, next) => {
   // find hostings that was stored in database
   const { username } = req.body;
-  await Location.find({ hostName: username }).then((result) => {
+  Location.find({ hostName: username }).then((result) => {
     if (result) {
       console.log("Hostings found in database!");
       res.locals.hostings = result;
