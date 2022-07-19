@@ -7,8 +7,9 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SignupPopup from "./SignupPopup.jsx";
 import { Signup } from "./Signup.jsx";
+import { useEffect } from "react";
 
-export const Login = () => {
+export const Login = (props) => {
   const [createUsername, setCreateUsername] = useState("");
   const [createPassword, setCreatePassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
@@ -40,6 +41,8 @@ export const Login = () => {
   if (loggedIn) {
     setTimeout(() => {
       history.push("/dashboard");
+      props.setOpen(false);
+      props.setUserInfo({user_id: createUsername});
     }, 0);
   }
 

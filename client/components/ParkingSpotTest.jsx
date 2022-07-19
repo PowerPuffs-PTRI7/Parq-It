@@ -65,7 +65,9 @@ export default function ParkingSpotTest({ info, isVisible }) {
     setOpen(true);
   };
   const handleClose = () => {
+    console.log('test');
     setOpen(false);
+    console.log(open)
   };
 
   return (
@@ -77,43 +79,41 @@ export default function ParkingSpotTest({ info, isVisible }) {
           <h1 className="spotAddress">{address}</h1>
         </span>
       </div>
-      <div>
-        <BootstrapDialog
+    </div>
+      <BootstrapDialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+      >
+        <BootstrapDialogTitle
+          id="customized-dialog-title"
           onClose={handleClose}
-          aria-labelledby="customized-dialog-title"
-          open={open}
-        >
-          <BootstrapDialogTitle
-            id="customized-dialog-title"
-            onClose={handleClose}
-          ></BootstrapDialogTitle>
-          <DialogContent dividers sx={{
-            fontFamily: "Helvetica",
-            fontWeight: "thin",
-            textAlign: "center"}}>
-              <div style={{fontSize: "x-large", fontWeight: "bold", color: "#BBD1D1"}}>
-              ${price}/hr
+        ></BootstrapDialogTitle>
+        <DialogContent dividers sx={{
+          fontFamily: "Helvetica",
+          fontWeight: "thin",
+          textAlign: "center"}}>
+            <div style={{fontSize: "x-large", fontWeight: "bold", color: "#BBD1D1"}}>
+            ${price}/hr
+            </div>
+            <br></br>
+            <div style={{fontWeight: "lighter"}}>
+            {address} 
+            </div>
+          {size === 1 && (
+            <div style={{fontWeight: "lighter"}}>
+              {options} | {size} car
               </div>
-              <br></br>
-              <div style={{fontWeight: "lighter"}}>
-              {address} 
+            )}
+              {size > 1 && (
+            <div style={{fontWeight: "lighter"}}>
+              {options} | {size} cars
               </div>
-            {size === 1 && (
-              <div style={{fontWeight: "lighter"}}>
-                {options} | {size} car
-                </div>
-              )}
-               {size > 1 && (
-              <div style={{fontWeight: "lighter"}}>
-                {options} | {size} cars
-                </div>
-              )}
-            {/* ${price}/hr | {options} | {size} cars */}
-            <BookingForm hostName={hostName} address={address}/>
-          </DialogContent>
-        </BootstrapDialog>
-      </div>
-      </div>
+            )}
+          {/* ${price}/hr | {options} | {size} cars */}
+          <BookingForm hostName={hostName} address={address}/>
+        </DialogContent>
+      </BootstrapDialog>
     </>
   );
 }

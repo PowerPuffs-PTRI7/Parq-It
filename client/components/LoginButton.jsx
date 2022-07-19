@@ -6,9 +6,9 @@ import "../styles.scss";
 
 function LoginButton(props) {
   if (props.user_id) {
-    return <><LogoutButton /></>
+    return <><LogoutButton setUserInfo={props.setUserInfo} /></>
   } else {
-    return <><LoginPopup /></>
+    return <><LoginPopup setUserInfo={props.setUserInfo} /></>
   }
 }
 
