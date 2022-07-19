@@ -138,7 +138,9 @@ export default function Dashboard(state) {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon sx={{ color: "#B9D8D8" }} />
+                    <div className='search-icon-div' onClick={handleSubmit}>
+                      <SearchIcon sx={{ color: "#B9D8D8" }} />
+                    </div>
                   </InputAdornment>
                 ),
               }}

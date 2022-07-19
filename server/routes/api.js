@@ -60,8 +60,4 @@ router.get('/checkLogin', cookieController.verifyCookie, (req, res) => {
 //   return res.status(200).json();
 // });
 
-// router.post("/test", cookieController.verifyCookie, (req, res) => {
-//   return res.status(200).json("Logged in");
-// });
-
 module.exports = router;

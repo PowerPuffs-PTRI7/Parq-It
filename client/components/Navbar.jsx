@@ -15,8 +15,8 @@ function Navbar(props) {
     <div className="navBar" style={{ height: "70px" }} sx={{ flexGrow: 1 }}>
         <Box sx={{ flexGrow: 1 }}>
           <Toolbar>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
-            <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+            <Link to="/dashboard" style={{ textDecoration: 'none', flexGrow: 1, textAlign: 'center' }}>
+            <Button color="inherit" sx={{ width: '100%' }}>
               <Typography
                 variant="h6"
                 component="div"
@@ -26,54 +26,20 @@ function Navbar(props) {
                   color: "#36454F",
                 }}
               >
+                <div className='nav-text'>
                 book
+                </div>
               </Typography>
+            </Button>
             </ Link>
-            </Button>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  textTransform: "none",
-                  fontWeight: "light",
-                  color: "#36454F",
-                }}
-              >
-                <Host />
-              </Typography>
-            </Button>
+            <Host />
             <Link to="/">
               <Button>
                 <img className="websiteLogo" src={logo} />
               </Button>
             </Link>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  textTransform: "none",
-                  fontWeight: "light",
-                  color: "#36454F",
-                }}
-              >
-                <AboutPage />
-              </Typography>
-            </Button>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  textTransform: "none",
-                  fontWeight: "light",
-                  color: "#36454F",
-                }}
-              >
-                 <LoginButton user_id={props.userInfo.user_id}/>
-              </Typography>
-            </Button>
+            <AboutPage />
+            <LoginButton user_id={props.userInfo.user_id}/>
           </Toolbar>
         </Box>
       </div>

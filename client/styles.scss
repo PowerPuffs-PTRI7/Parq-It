@@ -23,12 +23,23 @@ body {
   padding-bottom: .5rem;*/
 } 
 
+button:hover .nav-text {
+  color: #276793;
+}
+
 .topoSearch {
   border-bottom: .75px solid #36454F;
   position: relative;
   overflow: hidden;
-} 
+}
 
+.search-icon-div {
+  display: inherit;
+}
+
+.search-icon-div:hover {
+  cursor: pointer;
+}
 
 img.topo {
     position: absolute;
