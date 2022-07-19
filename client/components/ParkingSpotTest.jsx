@@ -65,7 +65,9 @@ export default function ParkingSpotTest({ info, isVisible }) {
     setOpen(true);
   };
   const handleClose = () => {
+    console.log('test');
     setOpen(false);
+    console.log(open)
   };
 
   return (
@@ -78,6 +80,8 @@ export default function ParkingSpotTest({ info, isVisible }) {
         </span>
       </div>
       <div>
+      </div>
+      </div>
         <BootstrapDialog
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
@@ -112,8 +116,6 @@ export default function ParkingSpotTest({ info, isVisible }) {
             <BookingForm hostName={hostName} address={address}/>
           </DialogContent>
         </BootstrapDialog>
-      </div>
-      </div>
     </>
   );
 }
