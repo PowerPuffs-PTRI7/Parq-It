@@ -61,7 +61,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default function LoginPopup() {
+export default function LoginPopup(props) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -109,7 +109,7 @@ export default function LoginPopup() {
         
       </BootstrapDialogTitle> 
       <DialogContent dividers> 
-        <Login handleClose={handleClose} />
+        <Login handleClose={handleClose} setOpen={setOpen} setUserInfo={props.setUserInfo} />
       </DialogContent>
     </BootstrapDialog>
     </>

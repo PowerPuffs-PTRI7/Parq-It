@@ -1,13 +1,19 @@
 import React from "react";
+import { Redirect, useHistory } from "react-router-dom";
 import Button from '@mui/material/Button';
 import "../styles.scss";
 import Typography from '@mui/material/Typography';
+import axios from "axios";
 
 
 function LogoutButton(props) {
+  const history = useHistory();
 
-  const handleClickOpen = () => {
-    console.log('clicked logout');
+  const handleClickOpen = (e) => {
+    e.preventDefault();
+    sessionStorage.removeItem('access_token');
+    props.setUserInfo({user_id: null});
+    history.push("/");
   };
 
   return (

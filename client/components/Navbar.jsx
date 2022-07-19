@@ -39,7 +39,7 @@ function Navbar(props) {
               </Button>
             </Link>
             <AboutPage />
-            <LoginButton user_id={props.userInfo.user_id}/>
+            <LoginButton user_id={props.userInfo.user_id} setUserInfo={props.setUserInfo}/>
           </Toolbar>
         </Box>
       </div>
