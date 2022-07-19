@@ -28,21 +28,24 @@ const apiRouter = require("./routes/api");
 const userRouter = require("./routes/user");
 const stripeRouter = require("./routes/stripe");
 
+//handle rerouted builds
+//app.use("/success/build", express.static(path.join(__dirname, "../../build")));
+
 // define route handlers here:
 app.use("/api/users", userRouter);
 app.use("/api", apiRouter);
-app.use("/success", stripeRouter);
+//app.use("/success", stripeRouter);
 
 // statically serve everything in the build folder on the route '/build'
 app.use("/build", express.static(path.join(__dirname, "../build")));
 
-
-app.post("/checkout", stripeController, (req, res) => {
+app.post("/success", stripeController, (req, res) => {
   res.status(200).json({ url: res.locals.session.url });
 });
 
-// serve index.html on the route '/'
+// this intends to reroute pages back to index
 app.get("/*", (req, res) => {
+  console.log("Ethans idea");
   return res.status(200).sendFile(path.join(__dirname, "../client/index.html"));
 });
 
@@ -54,7 +57,7 @@ app.use((req, res) => {
 // Global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
-    log: "Express error handler caught unknown middleware error",
+    log: `${err}`,
     status: 400,
     message: { err: "An error occurred" },
   };

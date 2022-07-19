@@ -3,6 +3,14 @@ const router = express.Router();
 const cookieController = require("../controllers/cookieController");
 const apiController = require("../controllers/apiController");
 const path = require("path");
+const app = express();
+
+//stripe.js handles all /success/*
+
+router.get("/", (req, res) => {
+  console.log("entered success /");
+  res.status(200);
+});
 
 router.get(
   "/:hostUsername/:bookingDate/:length/:location",
@@ -10,9 +18,17 @@ router.get(
   //apiController.createBookingAPI,
   (req, res) => {
     console.log("booking successful");
-    return res
-      .status(200)
-      .sendFile(path.join(__dirname, "../../client/index.html"));
+    try {
+      return res
+        .status(200)
+        .sendFile(path.join(__dirname + "../../../client/index.html"));
+    } catch (err) {
+      console.log(err);
+      return res.status(200);
+    }
+    // return res
+    //   .status(200)
+    //   .sendFile(path.join(__dirname, "../../client/index.html"));
   }
 );
 

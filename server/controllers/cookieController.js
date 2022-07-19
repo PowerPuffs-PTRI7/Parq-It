@@ -46,7 +46,8 @@ cookieController.verifyCookie = (req, res, next) => {
 
 //clear cookie on logout:
 cookieController.logout = (req, res, next) => {
-  sessionStorage.removeItem('access_token');
+  console.log("Hit cookie controller");
+  sessionStorage.removeItem("access_token");
   return next();
 };
 

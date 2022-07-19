@@ -20,6 +20,7 @@ const stripeController = async (req, res, next) => {
   let mongoPriceQuery = await Location.findOne({ username: hostUsername });
   //console.log("mongoPriceQuery->", mongoPriceQuery);
   //console.log("address", mongoPriceQuery.size);
+  //http://localhost:8080/success/${hostUsername}/${bookingDate}/${length}/${location}
   console.log(
     "yes---------------------------------------------------------------------------------------"
   );
@@ -38,7 +39,7 @@ const stripeController = async (req, res, next) => {
       },
     ],
     mode: "payment",
-    success_url: `http://localhost:8080/success/${hostUsername}/${bookingDate}/${length}/${location}`,
+    success_url: `http://localhost:8080/checkout/${hostUsername}/${bookingDate}/${length}/${location}`,
     cancel_url: `http://localhost:8080/`,
   });
   res.locals.session = session;

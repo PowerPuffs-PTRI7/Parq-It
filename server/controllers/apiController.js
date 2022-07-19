@@ -112,6 +112,7 @@ apiController.createBooking = (req, res, next) => {
 
 apiController.createBookingAPI = (req, res, next) => {
   //get input from user request (TBD)
+  console.log("Hit booking API for booking users in the backend");
   const username = res.locals.username;
   const { hostUsername, bookingDate, length, location } = req.params;
   console.log("username:", username);

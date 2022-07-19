@@ -59,6 +59,7 @@ router.post(
     //issue: how we do grab the booking data?
     console.log("the session url is", res.locals.session.url);
     return res.status(200).json(res.locals.session.url);
+    //return res.redirect(303, res.locals.session.url);
   }
 );
 

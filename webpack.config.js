@@ -40,11 +40,11 @@ module.exports = {
     }),
   ],
   devServer: {
-    port: 8080,
-    static: {
-      directory: path.resolve(__dirname, "build"),
-      publicPath: "/",
-    },
+    // port: 8080,
+    // static: {
+    //   directory: path.resolve(__dirname, "build"),
+    //   publicPath: "/",
+    // },
     historyApiFallback: true,
     open: true,
     hot: true,
