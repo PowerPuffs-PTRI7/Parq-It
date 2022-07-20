@@ -55,8 +55,7 @@ const App = (props) => {
             {/* <LandingPage success={true} /> */}
           {/* </Route> */}
           <Route path="/checkout">
-            <p>is this real?</p>
-            {/* <LandingPage success={true} /> */}
+            <LandingPage success={true} />
           </Route>
       </main> 
     </div>

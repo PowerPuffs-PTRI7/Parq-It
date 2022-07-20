@@ -43,9 +43,8 @@ app.post("/success", stripeController, (req, res) => {
   res.status(200).json({ url: res.locals.session.url });
 });
 
-// this intends to reroute pages back to index
+// this intends to reroute pages back to index if they're not known!
 app.get("/*", (req, res) => {
-  console.log("Ethans idea");
   return res.status(200).sendFile(path.join(__dirname, "../client/index.html"));
 });
 
