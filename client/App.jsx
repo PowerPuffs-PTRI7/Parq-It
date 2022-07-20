@@ -6,6 +6,7 @@ import LandingPage from "./components/LandingPage.jsx";
 import "./styles.scss";
 import Navbar from "./components/Navbar.jsx";
 import axios from "axios";
+import FourOhhhFour from './components/404.jsx';
 
 
 
@@ -44,19 +45,24 @@ const App = (props) => {
     <div className="router">
       <main>
         <Navbar setUserInfo={setUserInfo} userInfo={userInfo} />
-          <Route exact path="/">
-            <LandingPage />
-          </Route>
-          <Route exact path="/dashboard">
-            <Dashboard />
-          </Route>
+          <Switch> 
+            <Route exact path="/">
+              <LandingPage />
+            </Route>
+            <Route exact path="/dashboard">
+              <Dashboard />
+            </Route>
           {/* <Route exact path="/success">
             <p>Whats up!</p>
             {/* <LandingPage success={true} /> */}
           {/* </Route> */}
-          <Route path="/checkout">
-            <LandingPage success={true} />
-          </Route>
+            <Route path="/checkout">
+              <LandingPage success={true} />
+            </Route>
+            <Route path="*">
+              <FourOhhhFour />
+            </Route>
+          </Switch>
       </main> 
     </div>
     </Router>
