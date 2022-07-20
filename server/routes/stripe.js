@@ -14,8 +14,8 @@ router.get("/", (req, res) => {
 
 router.get(
   "/:hostUsername/:bookingDate/:length/:location",
-  //cookieController.verifyCookie,
-  //apiController.createBookingAPI,
+  cookieController.verifyCookie,
+  apiController.createBookingAPI,
   (req, res) => {
     console.log("booking successful");
     try {

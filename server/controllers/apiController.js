@@ -115,6 +115,7 @@ apiController.createBookingAPI = (req, res, next) => {
   console.log("Hit booking API for booking users in the backend");
   const username = res.locals.username;
   const { hostUsername, bookingDate, length, location } = req.params;
+  console.log("API for /checkout hit, these are params passed", req.params);
   console.log("username:", username);
   console.log("req", req.body);
   Booking.create(

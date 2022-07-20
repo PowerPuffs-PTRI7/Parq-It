@@ -34,11 +34,12 @@ const stripeRouter = require("./routes/stripe");
 // define route handlers here:
 app.use("/api/users", userRouter);
 app.use("/api", apiRouter);
-//app.use("/success", stripeRouter);
+app.use("/checkout/", stripeRouter);
 
 // statically serve everything in the build folder on the route '/build'
 app.use("/build", express.static(path.join(__dirname, "../build")));
 
+//Serve the URL for stripe
 app.post("/success", stripeController, (req, res) => {
   res.status(200).json({ url: res.locals.session.url });
 });
