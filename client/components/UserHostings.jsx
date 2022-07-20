@@ -21,7 +21,6 @@ import Host from "./Host.jsx";
 import { useLocation } from "react-router";
 
 export default function UserHostings() {
-
  const [hostings, setHostings] = useState([])
 
  useEffect(() => {
@@ -42,7 +41,9 @@ return (
     <div>
     <ul>
       {
-        // bookings.map(booking => <li key={booking.hostUsername}> {booking.location} </li>)
+        //add key to each li
+        hostings.map(hosting =>
+          <li > {hosting.location} </li>)
       }
     </ul>
    </div>

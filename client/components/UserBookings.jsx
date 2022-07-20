@@ -21,29 +21,7 @@ import Host from "./Host.jsx";
 import { useLocation } from "react-router";
 
 export default function UserBookings() {
-    const useStyles = makeStyles(() => ({
-      textField: {
-        width: "98%",
-        height: "50%",
-        marginLeft: "auto",
-        marginRight: "auto",
-        paddingBottom: 0,
-        marginTop: 0,
-        fontWeight: 500,
-        borderRadius: 0,
-      },
-      overrides: {
-        border: 0,
-        borderRadius: 20,
-      },
-      input: {
-        color: "white",
-      },
-    }));
-  
-    const classes = useStyles();
-  
-    const [bookings, setBookings] = useState([])
+  const [bookings, setBookings] = useState([])
 
     useEffect(() => {
        axios.post("http://localhost:3000/api/allbookings", 
@@ -62,9 +40,9 @@ export default function UserBookings() {
 return (
     <div>
  <ul>
-   <li>Hi people</li>
       {
-        // bookings.map(booking => <li key={booking.hostUsername}> {booking.location} </li>)
+        bookings.map(booking => 
+        <li key={booking.hostUsername}> {booking.location} {booking.bookingDate} {booking.length}</li>)
       }
     </ul>
    </div>

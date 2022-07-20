@@ -26,13 +26,13 @@ import { useLocation } from "react-router";
 
 const images = [
   {
-    url: 'https://codesmith-iteration-project.s3.us-west-1.amazonaws.com/crowdedparkinglot.jpg',
+    url: 'https://codesmith-iteration-project.s3.us-west-1.amazonaws.com/jorgina-nkosi-jeQz9ULm8iE-unsplash.jpg',
     title: 'Bookings',
     width: '40%',
     link: '/userbookings'
   },
   {
-    url: 'https://codesmith-iteration-project.s3.us-west-1.amazonaws.com/crowdedparkinglot.jpg',
+    url: 'https://codesmith-iteration-project.s3.us-west-1.amazonaws.com/raban-haaijk-wftNpcjCHT4-unsplash.jpg',
     title: 'Hostings',
     width: '30%',
     link: '/userhostings'
@@ -130,10 +130,10 @@ export default function LoggedinPage(state) {
   const location = useLocation();
 
   const [address, setAddress] = useState("");
-  const [zoom, setZoom] = useState(10);
+  const [zoom, setZoom] = useState(3);
   const [data, setData] = useState({
-    lat: 34.052235,
-    lng: -118.243683,
+    lat: 39.8097343,
+    lng:  -98.5556199,
     listings: [],
   });
 
@@ -161,7 +161,8 @@ export default function LoggedinPage(state) {
   useEffect(
     () => {
       setData(location.data ? location.data : data);
-      setZoom(13);
+      setZoom(3
+        );
     },[]
   );
   // { lat: 34.052235, lng: -118.243683, listings: [] }
