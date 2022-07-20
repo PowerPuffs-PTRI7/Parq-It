@@ -19,7 +19,7 @@ import LoginPopup from "./LoginPopup.jsx";
 import AboutPage from "./About.jsx";
 import Host from "./Host.jsx";
 
-export default function UserBookings(state) {
+export default function UserBookings() {
     const useStyles = makeStyles(() => ({
       textField: {
         width: "98%",
@@ -122,39 +122,6 @@ return (
           </Button>
         </Toolbar>
       </Box>
-    </div>
-  
-        <div className="bookingDiv" 
-        style={{ width: "100%", height: "50%", border: "5px solid brown" }} 
-        >
-         <Typography
-          component="div"
-          sx={{
-            textTransform: "none",
-            fontWeight: "light",
-            color: "#36454F",
-            fontSize: "20px"
-          }}
-         > <button>
-          <img src=""> 
-          </img> 
-           bookings  
-           </button></Typography></div>
-        <br></br>
-        <div className="hostingDiv" 
-        style={{ width: "100%", height: "50%", border: "2px solid brown" }}
-        >
-          <Typography
-          component="div"
-          sx={{
-            textTransform: "none",
-            fontWeight: "light",
-            color: "#36454F",
-            fontSize: "20px"
-          }}
-         > hostings 
-      
-         </Typography>
-        </div>
+    </div> 
       </div>
 )}

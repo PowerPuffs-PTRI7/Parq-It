@@ -365,8 +365,10 @@ export default function LoggedinPage(state) {
            Bookings 
            <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
       {images.map((image) => (
-        <Link to={image.link} >
-        <ImageButton
+        <>
+        <ImageButton 
+          component={Link}
+          to={image.link}
           focusRipple
           key={image.title}
           style={{
@@ -392,7 +394,8 @@ export default function LoggedinPage(state) {
             </Typography>
           </Image>
         </ImageButton>
-        </Link>
+        <br></br>
+        </>
       ))}
     </Box>
              </Typography></div>

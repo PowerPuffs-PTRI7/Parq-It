@@ -19,7 +19,7 @@ import LoginPopup from "./LoginPopup.jsx";
 import AboutPage from "./About.jsx";
 import Host from "./Host.jsx";
 
-export default function UserHostings(state) {
+export default function UserHostings() {
 
  const [hostings, setHostings] = useState([])
 
@@ -38,11 +38,78 @@ export default function UserHostings(state) {
 );
 
 return (
-    <>
-    <ul>
-      {
-        // bookings.map(booking => <li key={booking.hostUsername}> {booking.location} </li>)
-      }
-    </ul>
-   </>
+  <div style={{ display: "flex", flexDirection: "column" }}>
+    <div className="navBar" style={{ height: "70px" }} sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1 }}>
+        <Toolbar>
+          <Button color="inherit" sx={{ flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                textTransform: "none",
+                fontWeight: "light",
+                color: "#36454F",
+              }}
+            >
+              book
+            </Typography>
+          </Button>
+          <Button color="inherit" sx={{ flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                textTransform: "none",
+                fontWeight: "light",
+                color: "#36454F",
+              }}
+            >
+              <Host />
+            </Typography>
+          </Button>
+          <Link to="/">
+            <Button>
+              <img className="websiteLogo" src={logo} />
+            </Button>
+          </Link>
+          <Button color="inherit" sx={{ flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                textTransform: "none",
+                fontWeight: "light",
+                color: "#36454F",
+              }}
+            >
+              <AboutPage />
+            </Typography>
+          </Button>
+          <Button color="inherit" sx={{ flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                textTransform: "none",
+                fontWeight: "light",
+                color: "#36454F",
+              }}
+            >
+               <LoginPopup />
+            </Typography>
+          </Button>
+        </Toolbar>
+      </Box>
+    </div>
+  
+       
+      </div>
+  //   <>
+  //   <ul>
+  //     {
+  //       // bookings.map(booking => <li key={booking.hostUsername}> {booking.location} </li>)
+  //     }
+  //   </ul>
+  //  </>
 )}
