@@ -50,7 +50,14 @@ const App = (props) => {
           <Route exact path="/dashboard">
             <Dashboard />
           </Route>
-      </main>
+          {/* <Route exact path="/success">
+            <p>Whats up!</p>
+            {/* <LandingPage success={true} /> */}
+          {/* </Route> */}
+          <Route path="/checkout">
+            <LandingPage success={true} />
+          </Route>
+      </main> 
     </div>
     </Router>
   );

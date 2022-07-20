@@ -6,10 +6,12 @@ const apiController = {};
 apiController.createLocation = async (req, res, next) => {
   // When host adds listing, create new location in the db
   try {
-    const hostName = res.locals.username
+    const hostName = res.locals.username;
     const { address, price, options, size } = req.body;
     const coordinates = res.locals.data;
+    console.log("hit the create location middleware");
     console.log(coordinates);
+
     //get coords for api
     await Location.create({
       hostName,
@@ -81,10 +83,40 @@ apiController.getAllLocation = (req, res, next) => {
 // "Create booking" controller
 apiController.createBooking = (req, res, next) => {
   //get input from user request (TBD)
-  const username = res.locals.username
+  const username = res.locals.username;
   const { hostUsername, bookingDate, length, location } = req.body;
-  console.log("username:", username)
-  console.log("req", req.body)
+  console.log("username:", username);
+  console.log("req", req.body);
+  Booking.create(
+    {
+      clientUsername: username,
+      hostUsername: hostUsername,
+      bookingDate: bookingDate,
+      length: length,
+      location,
+    },
+    (err, docs) => {
+      if (err) {
+        return next({
+          log: `apiController.getLocation error :${err}`,
+          message: {
+            err: "Error occured in getLocation",
+          },
+        });
+      }
+      res.locals.booking = docs;
+      return next();
+    }
+  );
+};
+
+apiController.createBookingAPI = (req, res, next) => {
+  //get input from user request (TBD)
+  console.log("Hit booking API for booking users in the backend");
+  const username = res.locals.username;
+  const { hostUsername, bookingDate, length, location } = req.params;
+  console.log("username:", username);
+  console.log("req", req.body);
   Booking.create(
     {
       clientUsername: username,

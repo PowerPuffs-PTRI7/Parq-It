@@ -36,7 +36,7 @@ cookieController.verifyCookie = (req, res, next) => {
       return next({
         log: "error in verify login",
         status: 403,
-        message: err
+        message: err,
       });
     }
     res.locals.username = decoded.username;
@@ -46,7 +46,8 @@ cookieController.verifyCookie = (req, res, next) => {
 
 //clear cookie on logout:
 cookieController.logout = (req, res, next) => {
-  sessionStorage.removeItem('access_token');
+  console.log("Hit cookie controller");
+  sessionStorage.removeItem("access_token");
   return next();
 };
 

@@ -11,9 +11,10 @@ import { makeStyles } from "@material-ui/core";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@mui/material/TextField";
+import Confirmation from "./Confirmation.jsx";
 
 
-export default function LandingPage() {
+export default function LandingPage(props) {
   const useStyles = makeStyles(() => ({
     textField: {
       width: "98%",
@@ -33,6 +34,7 @@ export default function LandingPage() {
   const classes = useStyles();
 
   const [address, setAddress] = useState("");
+  const [success, setSuccess] = useState()
   // const [data, setData] = useState({
   //   lat: 34.052235,
   //   lng: -118.243683,
@@ -58,6 +60,16 @@ export default function LandingPage() {
       });
 
   };
+
+  if(props.success == true) {
+    if(success) {
+      //do nothing
+    }
+    else {
+      console.log('success is indeed true')
+      setSuccess(<Confirmation/>)
+    }
+  }
 
 
   return (
@@ -89,7 +101,7 @@ export default function LandingPage() {
           </form>
         </div>
       </div>
-
+          {success}
       <div className="archways" style={{ height: `calc( 100vh - 440px)` }}>
         <div
           className="leftArch"

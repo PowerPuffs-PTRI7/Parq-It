@@ -13,7 +13,7 @@ const userSchema = new Schema({
 const bookingSchema = new Schema({
   clientUsername: { type: String, required: true },
   hostUsername: { type: String, required: true },
-  bookingDate: { type: String, required: true },
+  bookingDate: { type: Date, required: true },
   length: { type: Number, required: true },
   location: { type: String, required: true },
 });
