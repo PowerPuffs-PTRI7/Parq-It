@@ -1,11 +1,6 @@
 import * as React from "react";
-import { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "../styles.scss";
-import logo from "../assets/blueParq.png";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { makeStyles } from "@material-ui/core";
@@ -15,10 +10,8 @@ import TextField from "@mui/material/TextField";
 import Maps from "./Map.jsx";
 import ParkingSpot from "./ParkingSpot.jsx";
 import { useEffect, useState } from "react";
-import LoginPopup from "./LoginPopup.jsx";
-import AboutPage from "./About.jsx";
-import Host from "./Host.jsx";
 import ParkingSpotTest from "./ParkingSpotTest.jsx";
+import { useLocation } from "react-router";
 
 export default function Dashboard(state) {
   const useStyles = makeStyles(() => ({
@@ -42,6 +35,7 @@ export default function Dashboard(state) {
   }));
 
   const classes = useStyles();
+  const location = useLocation();
 
   const [address, setAddress] = useState("");
   const [zoom, setZoom] = useState(10);
@@ -74,14 +68,14 @@ export default function Dashboard(state) {
 
   useEffect(
     () => {
-      setData(state.location.data ? state.location.data : data);
+      setData(location.data ? location.data : data);
       setZoom(13);
     },[]
   );
   // { lat: 34.052235, lng: -118.243683, listings: [] }
 
   const listings = data.listings;
-  console.log('the listings are', listings)
+  // console.log('the listings are', listings)
 
   const spotElems = listings.map((ele, i) => {
     // convert latitude to longitude of the search to radians
@@ -122,69 +116,7 @@ export default function Dashboard(state) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <div className="navBar" style={{ height: "70px" }} sx={{ flexGrow: 1 }}>
-        <Box sx={{ flexGrow: 1 }}>
-          <Toolbar>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  textTransform: "none",
-                  fontWeight: "light",
-                  color: "#36454F",
-                }}
-              >
-                book
-              </Typography>
-            </Button>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  textTransform: "none",
-                  fontWeight: "light",
-                  color: "#36454F",
-                }}
-              >
-                <Host />
-              </Typography>
-            </Button>
-            <Link to="/">
-              <Button>
-                <img className="websiteLogo" src={logo} />
-              </Button>
-            </Link>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  textTransform: "none",
-                  fontWeight: "light",
-                  color: "#36454F",
-                }}
-              >
-                <AboutPage />
-              </Typography>
-            </Button>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  textTransform: "none",
-                  fontWeight: "light",
-                  color: "#36454F",
-                }}
-              >
-                 <LoginPopup />
-              </Typography>
-            </Button>
-          </Toolbar>
-        </Box>
-      </div>
+
       <div
         className="filterBar"
         style={{ height: "40px" }}
@@ -206,7 +138,9 @@ export default function Dashboard(state) {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon sx={{ color: "#B9D8D8" }} />
+                    <div className='search-icon-div' onClick={handleSubmit}>
+                      <SearchIcon sx={{ color: "#B9D8D8" }} />
+                    </div>
                   </InputAdornment>
                 ),
               }}

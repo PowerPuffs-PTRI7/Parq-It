@@ -2,13 +2,9 @@ import * as React from "react";
 import { Link , Redirect, useHistory} from "react-router-dom";
 import "../styles.scss";
 import axios from "axios";
-import logo from "../assets/blueParq.png";
 import topoBackground from "../assets/topoBackground.png";
 import bookArchway from "../assets/book archway.png";
 import hostArchway from "../assets/host archway.png";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
@@ -19,9 +15,10 @@ import LoginPopup from "./LoginPopup.jsx"
 import AboutPage from "./About.jsx"
 import Host from "./Host.jsx"
 import LoggedinPage from "./LoggedinPage.jsx";
+import Confirmation from "./Confirmation.jsx";
 
 
-export default function LandingPage() {
+export default function LandingPage(props) {
   const useStyles = makeStyles(() => ({
     textField: {
       width: "98%",
@@ -41,6 +38,7 @@ export default function LandingPage() {
   const classes = useStyles();
 
   const [address, setAddress] = useState("");
+  const [success, setSuccess] = useState()
   // const [data, setData] = useState({
   //   lat: 34.052235,
   //   lng: -118.243683,
@@ -67,78 +65,23 @@ export default function LandingPage() {
 
   };
 
+  if(props.success == true) {
+    if(success) {
+      //do nothing
+    }
+    else {
+      console.log('success is indeed true')
+      setSuccess(<Confirmation/>)
+    }
+  }
+
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <div className="navBar" style={{ height: "70px" }} sx={{ flexGrow: 1 }}>
-        <Box sx={{ flexGrow: 1 }}>
-          <Toolbar>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
-              {/* changed the link to userpage to test the userpage, previous code is below */}
-            <Link to="/dashboard" style={{ textDecoration: 'none' }}>
-            {/* <Link to="/userpage" style={{ textDecoration: 'none' }}> */}
-
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  textTransform: "none",
-                  fontWeight: "light",
-                  color: "#36454F",
-                }}
-              >
-                book
-              </Typography>
-              </ Link>
-            </Button>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  textTransform: "none",
-                  fontWeight: "light",
-                  color: "#36454F",
-                }}
-              >
-                <Host />
-              </Typography>
-            </Button>
-            <Button>
-              <img className="websiteLogo" src={logo} />
-            </Button>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  textTransform: "none",
-                  fontWeight: "light",
-                  color: "#36454F",
-                }}
-              >
-                <AboutPage />
-              </Typography>
-            </Button>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  textTransform: "none",
-                  fontWeight: "light",
-                  color: "#36454F",
-                }}
-              >
-                <LoginPopup />
-              </Typography>
-            </Button>
-          </Toolbar>
-        </Box>
-      </div>
 
       <div className="topoSearch" style={{ height: "350px" }}>
         <img className="topo" src={topoBackground} width="100%"></img>
+
         <div className="landingSearch">
           <form onSubmit={handleSubmit} >
             <TextField
@@ -152,7 +95,9 @@ export default function LandingPage() {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon sx={{ color: "#B9D8D8" }} />
+                    <div className='search-icon-div' onClick={handleSubmit}>
+                      <SearchIcon sx={{ color: "#B9D8D8" }} />
+                    </div>
                   </InputAdornment>
                 ),
               }}
@@ -160,7 +105,7 @@ export default function LandingPage() {
           </form>
         </div>
       </div>
-
+          {success}
       <div className="archways" style={{ height: `calc( 100vh - 440px)` }}>
         <div
           className="leftArch"

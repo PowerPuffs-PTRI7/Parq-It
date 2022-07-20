@@ -27,7 +27,6 @@ cookieController.setCookie = (req, res, next) => {
 
 cookieController.verifyCookie = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
-  console.log("token:", token);
   // if (token === null) {
   //   console.log("no token found!");
   //   return res.status(403).send("Cannot verify user");
@@ -37,7 +36,7 @@ cookieController.verifyCookie = (req, res, next) => {
       return next({
         log: "error in verify login",
         status: 403,
-        message: err
+        message: err,
       });
     }
     res.locals.username = decoded.username;
@@ -47,7 +46,8 @@ cookieController.verifyCookie = (req, res, next) => {
 
 //clear cookie on logout:
 cookieController.logout = (req, res, next) => {
-  res.clearCookie("access_token");
+  console.log("Hit cookie controller");
+  sessionStorage.removeItem("access_token");
   return next();
 };
 

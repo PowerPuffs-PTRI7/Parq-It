@@ -1,51 +1,72 @@
-const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
-const db = undefined;
+const stripe = require("stripe")(
+  "sk_test_51LKuG6KjRTJy9juZp1Tl37bHgi0blYv9EPcuZBLUCZ3qx5FlBzh9JVAzU2xNdpNb4gFjyxC7iXRHisoRceo1TKUF004l8YQAH6"
+);
+const { Location } = require("../models/userModel");
 
 const stripeController = async (req, res, next) => {
+  console.log("entered stripe body ->", req.body);
   // Destructure what was sent in the request body
-  const { parking } = req.body;
-  // parking will be an object
-
+  let { hostUsername, bookingDate, length, location } = req.body;
+  intLocation = location;
+  location = location.split(" ").join("_");
+  console.log("location is", location);
+  console.log(typeof location);
+  console.log(
+    `http://localhost:8080/checkout/${hostUsername}/${bookingDate}/${length}/${location}`
+  );
   //destructure parking, grab the spot rate and hours
 
-  const lineItemsArr = [];
-  for (let parkRate in parking) {
-    // get price for each dish
-    //const params = [dishId];
-    //sqlDishQuery = `select * from public.dishes where pk_dish_id = $1`;
-    dishData = await db.query(sqlDishQuery, params);
-
-    const newItem = {
-      price_data: {
-        currency: "usd",
-        product_data: {
-          name: dishes[dishId].name,
-        },
-        // Price comes with a $ sign, this is why we used slice. Stripe takes price in cents thus *100
-        unit_amount: Number(dishData.rows[0].price.slice(1) * 100),
-      },
-      quantity: dishes[dishId].quantity,
-    };
-    lineItemsArr.push(newItem);
-  }
+  // get price for each dish
+  //const params = [dishId];
+  let mongoPriceQuery = await Location.findOne({
+    username: hostUsername,
+    address: intLocation,
+  });
+  //console.log("mongoPriceQuery->", mongoPriceQuery);
+  //console.log("address", mongoPriceQuery.size);
+  //http://localhost:8080/success/${hostUsername}/${bookingDate}/${length}/${location}
   console.log(
-    "---------------------------------------------------------------------------------------"
+    "yes---------------------------------------------------------------------------------------"
   );
-  console.log(lineItemsArr);
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    line_items: [
+      {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: mongoPriceQuery.address,
+          },
+          unit_amount: mongoPriceQuery.price * 100,
+        },
+        quantity: length,
+      },
+    ],
+    mode: "payment",
+    success_url: `http://localhost:8080/checkout/${hostUsername}/${bookingDate}/${length}/${location}`,
+    cancel_url: `http://localhost:8080/`,
+  });
+  res.locals.session = session;
+  next();
 
-  try {
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      mode: "payment",
-      line_items: lineItemsArr,
-      success_url: "http://localhost:8080/",
-      cancel_url: "http://www.google.com",
-    });
-    res.locals.session = session;
-    return next();
-  } catch (error) {
-    return next(error);
-  }
+  // const session = await stripe.checkout.sessions.create({
+  //   payment_method_types: ["card"],
+  //   mode: "payment",
+  //   line_items: [
+  //     {
+  //       price_data: {
+  //         currency: "usd",
+  //         product_data: {
+  //           name: mongoPriceQuery.address,
+  //         },
+  //         unit_amount: mongoPriceQuery.price,
+  //       },
+  //       quantity: mongoPriceQuery.size,
+  //     },
+  //   ],
+  //   success_url: "http://localhost:8080/",
+  //   cancel_url: "http://www.google.com",
+  // });
 };
 
 module.exports = stripeController;
