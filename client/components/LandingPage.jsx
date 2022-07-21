@@ -12,6 +12,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@mui/material/TextField";
 import Confirmation from "./Confirmation.jsx";
+import { useParams } from "react-router-dom";
 
 
 export default function LandingPage(props) {
@@ -42,6 +43,7 @@ export default function LandingPage(props) {
   // });
 
   let history = useHistory();
+  const params = useParams();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,7 +68,21 @@ export default function LandingPage(props) {
       //do nothing
     }
     else {
+      console.log(params); // :hostUsername/:bookingDate/:length/:location
       console.log('success is indeed true')
+      axios
+        .post('http://localhost:3000/order', 
+        {
+          hostUsername: params.hostUsername,
+          bookingDate: params.bookingDate,
+          length: params.length,
+          location: params.location,
+        },
+        {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+        }
+      })
       setSuccess(<Confirmation/>)
     }
   }

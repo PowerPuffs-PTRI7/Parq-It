@@ -36,6 +36,16 @@ app.use("/api/users", userRouter);
 app.use("/api", apiRouter);
 app.use("/checkout/", stripeRouter);
 
+app.post("/order", (req, res) => {
+  console.log("This confirms connection to the server");
+  console.log("-------------BODY", req.body);
+  console.log("-------------TOKEN", req.headers);
+  //push this through verify cookie
+  //bookingAPI
+
+  return res.status(200);
+});
+
 // statically serve everything in the build folder on the route '/build'
 app.use("/build", express.static(path.join(__dirname, "../build")));
 

@@ -62,6 +62,10 @@ module.exports = {
         target: "http://localhost:3000/",
         secure: false,
       },
+      // "/checkout/**": {
+      //   target: "http://localhost:3000/",
+      //   secure: false,
+      // },
     },
   },
 };

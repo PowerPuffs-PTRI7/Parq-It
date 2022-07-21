@@ -7,12 +7,14 @@ const stripeController = async (req, res, next) => {
   console.log("entered stripe body ->", req.body);
   // Destructure what was sent in the request body
   let { hostUsername, bookingDate, length, location } = req.body;
+  //this keeps a copy of the unmutated variables
   intLocation = location;
+  //this removes spacing from variables
   location = location.split(" ").join("_");
   console.log("location is", location);
   console.log(typeof location);
   console.log(
-    `http://localhost:8080/checkout/${hostUsername}/${bookingDate}/${length}/${location}`
+    `http://localhost:8080/checkout/${hostUsername}/${bookingDate}/${length}/${location}/`
   );
   //destructure parking, grab the spot rate and hours
 
