@@ -40,11 +40,13 @@ const images = [
 ];
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
-  position: 'relative',
-  height: 200,
+  display: 'flex',
+  flexDirection: 'row',
+  height: 500,
+  width: 1700,
   [theme.breakpoints.down('sm')]: {
-    width: '100% !important', // Overrides inline-style
-    height: 100,
+    height: 500,
+    width: 500
   },
   '&:hover, &.Mui-focusVisible': {
     zIndex: 1,
@@ -78,6 +80,7 @@ const Image = styled('span')(({ theme }) => ({
   bottom: 0,
   display: 'flex',
   alignItems: 'center',
+  flexDirection: 'column',
   justifyContent: 'center',
   color: theme.palette.common.white,
 }));
@@ -88,6 +91,7 @@ const ImageBackdrop = styled('span')(({ theme }) => ({
   right: 0,
   top: 0,
   bottom: 0,
+  justifyContent: 'center',
   backgroundColor: theme.palette.common.black,
   opacity: 0.4,
   transition: theme.transitions.create('opacity'),
@@ -290,20 +294,7 @@ export default function LoggedinPage(state) {
           className="rightTiles"
           style={{ width: "50%", height: "100%", float: "right" }}
         >
-          <div className="bookingDiv" 
-          style={{ width: "100%", height: "50%", border: "5px solid brown" }} 
-          >
-           <Typography
-            component="div"
-            sx={{
-              textTransform: "none",
-              fontWeight: "light",
-              color: "#36454F",
-              fontSize: "20px"
-            }}
-           > 
-           Bookings 
-           <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
+           <Box sx={{ display: 'flex', flexDirection: 'column', flexWrap: 'wrap', minWidth: 400, width: '100%' }}>
       {images.map((image) => (
         <>
         <ImageButton 
@@ -334,30 +325,11 @@ export default function LoggedinPage(state) {
             </Typography>
           </Image>
         </ImageButton>
-        <br></br>
         </>
       ))}
     </Box>
-             </Typography></div>
-          <br></br>
-          <div className="hostingDiv" 
-          style={{ width: "100%", height: "50%", border: "2px solid brown" }}
-          >
-            <Typography
-            component="div"
-            sx={{
-              textTransform: "none",
-              fontWeight: "light",
-              color: "#36454F",
-              fontSize: "20px"
-            }}
-           > 
-           
-        
-           </Typography>
           </div>
         </div>
       </div>
-    </div>
   );
 }
