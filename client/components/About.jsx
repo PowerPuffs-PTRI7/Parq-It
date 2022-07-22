@@ -59,22 +59,6 @@ export default function AboutPage() {
     setOpen(false);
   };
 
-//   const useStyles = makeStyles(() => ({
-//     textField: {
-//       width: "98%",
-//       height: "50%",
-//       marginLeft: "auto",
-//       marginRight: "auto",
-//       paddingBottom: 0,
-//       marginTop: 0,
-//       fontWeight: 500,
-//       borderRadius: 0,
-//     },
-//     input: {
-//       color: "white",
-//     },
-//   }));
-
   return (<>
     <Button color="inherit" onClick={handleClickOpen} sx={{ flexGrow: 1 }}>
       <Typography
@@ -95,6 +79,7 @@ export default function AboutPage() {
                 textTransform: "none",
                 fontWeight: "light",
                 color: "#36454F",
+                textAlign: 'center'
               }}>
             <div className='nav-text'>
               about
@@ -117,6 +102,7 @@ export default function AboutPage() {
                 textTransform: "none",
                 fontWeight: "light",
                 color: "#36454F",
+                textAlign: 'center'
               }} gutterBottom>
           Parking can be troublesome - Parq-It helps by providing regional listings of parking spaces available for rent by real people.
           People can search for available listings at any time by providing a city and a state, but to book or host, people will need to create an account.
@@ -127,14 +113,16 @@ export default function AboutPage() {
                 fontWeight: "light",
                 color: "#36454F",
               }} gutterBottom>
-         Parq-ers can save time looking for a parking space anywhere where parking is scarce. 
+
         </Typography>
         <Typography  sx={{
                 textTransform: "none",
                 fontWeight: "light",
                 color: "#36454F",
+                textAlign: 'center'
               }}
               gutterBottom>
+                 Parq-ers can save time looking for a parking space anywhere where parking is scarce. 
         Anyone can host on Park-It as long as she or he is verified. A verified host can list and rent parking spots by providing details about the spots
             such as address, price, size, and options. All personal and payment information will be secured. Parq provides a very easy way to earn income while
             sitting at home.     
