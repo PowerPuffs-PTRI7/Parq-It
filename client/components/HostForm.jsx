@@ -5,12 +5,15 @@ import axios from "axios";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import AWSBucket from "./AWSBucket.jsx";
 
 export default function HostForm() {
   const [createAddress, setCreateAddress] = useState("");
   const [createPrice, setCreatePrice] = useState(0);
   const [createSize, setCreateSize] = useState(0);
   const [createOptions, setCreateOptions] = useState("");
+  const [imageUrl, setImageUrl] = useState('');
+  const [upload, setUpload] = useState();
 
   const [locationCreated, setLocation] = useState(false);
 
@@ -125,6 +128,12 @@ export default function HostForm() {
         >
           Submit Form
         </Button>
+        <AWSBucket
+          imageUrl={imageUrl}
+          setImageUrl={setImageUrl}
+          upload={upload}
+          setUpload={setUpload}
+        />
       </div>
     </Box>
   );

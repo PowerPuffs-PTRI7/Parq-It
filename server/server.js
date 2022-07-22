@@ -7,11 +7,13 @@ const app = express();
 const PORT = 3000;
 const cookieParser = require("cookie-parser");
 const stripeController = require("./controllers/stripeController");
+const fileUpload = require('express-fileupload');
 dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
+app.use(fileUpload());
 
 // Mongo Connection
 mongoose

@@ -67,6 +67,10 @@ router.get("/checkLogin", cookieController.verifyCookie, (req, res) => {
   return res.status(200).json(res.locals.username);
 });
 
+router.post('/upload', apiController.uploadPhoto, (req, res) => {
+  return res.status(200).json(res.locals.data);
+});
+
 // post for filter bookings // router.post("/price", apiController.getPriceLocation, (req,res,next)=> {
 //   return res.status(200).json();
 // });

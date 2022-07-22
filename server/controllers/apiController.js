@@ -1,4 +1,9 @@
 const { Location, Booking } = require("../models/userModel");
+const fs = require('fs');
+const AWS = require('aws-sdk');
+
+
+const s3 = new AWS.S3();
 
 const apiController = {};
 
@@ -159,6 +164,27 @@ apiController.getBooking = async (req, res, next) => {
         },
       });
     }
+  });
+};
+
+apiController.uploadPhoto = (req, res, next) => {
+  // Binary data base64
+  const fileContent  = Buffer.from(req.files.image.data, 'binary');
+
+  // Setting up S3 upload parameters
+  const params = {
+      Bucket: 'codesmith-iteration-project',
+      Key: req.files.image.name, // File name you want to save as in S3
+      Body: fileContent
+  };
+
+  // Uploading files to the bucket
+  s3.upload(params, function(err, data) {
+      if (err) {
+          return next({err});
+      }
+      res.locals.data = data;
+      next();
   });
 };
 
