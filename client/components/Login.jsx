@@ -40,7 +40,7 @@ export const Login = (props) => {
 
   if (loggedIn) {
     setTimeout(() => {
-      history.push("/dashboard");
+      history.push("/userpage");
       props.setOpen(false);
       props.setUserInfo({user_id: createUsername});
     }, 0);

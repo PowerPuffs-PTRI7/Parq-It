@@ -173,6 +173,11 @@ img.archway {
   z-index: 1;
 }
 
+.crowdedLotPhoto {
+  max-width: 560px;
+  display: flex;
+}
+
   .bookingDiv {
     border: solid lightblue;
     display: flex;

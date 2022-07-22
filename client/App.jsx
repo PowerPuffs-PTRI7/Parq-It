@@ -55,11 +55,11 @@ const App = (props) => {
             <Route exact path="/userhostings">
               <UserHostings />
             </Route>
-            {/* <Route exact path="/userpage">
+            <Route exact path="/userpage">
               <LoggedinPage />
-            </Route> */}
+            </Route>
             <Route exact path="/">
-              <LoggedinPage />
+              <LandingPage />
             </Route>
             <Route exact path="/dashboard">
               <Dashboard />

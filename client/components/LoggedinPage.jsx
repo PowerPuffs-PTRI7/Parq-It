@@ -42,10 +42,10 @@ const images = [
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
-  height: 500,
+  height: '50%',
   width: 1700,
   [theme.breakpoints.down('sm')]: {
-    height: 500,
+    height: '50%',
     width: 500
   },
   '&:hover, &.Mui-focusVisible': {
