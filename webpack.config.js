@@ -5,7 +5,7 @@ module.exports = {
   entry: "./client/index.js",
   output: {
     path: path.resolve(__dirname, "build"),
-    publicPath: "/",
+    publicPath: "/build/",
     filename: "bundle.js",
   },
   mode: "development",
@@ -62,10 +62,10 @@ module.exports = {
         target: "http://localhost:3000/",
         secure: false,
       },
-      // "/checkout/**": {
-      //   target: "http://localhost:3000/",
-      //   secure: false,
-      // },
+      "/order/**": {
+        target: "http://localhost:3000/",
+        secure: false,
+      },
     },
   },
 };
