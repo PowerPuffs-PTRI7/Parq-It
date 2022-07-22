@@ -115,35 +115,55 @@ apiController.createBooking = (req, res, next) => {
   );
 };
 
-apiController.createBookingAPI = (req, res, next) => {
+apiController.createBookingAPI = async (req, res, next) => {
   //get input from user request (TBD)
   console.log("Hit booking API for booking users in the backend");
   const username = res.locals.username;
-  const { hostUsername, bookingDate, length, location } = req.params;
-  console.log("API for /checkout hit, these are params passed", req.params);
+  const { hostUsername, bookingDate, length, location } = req.body;
+  console.log("API for /checkout hit, these are params passed", req.body);
   console.log("username:", username);
   console.log("req", req.body);
-  Booking.create(
-    {
-      clientUsername: username,
-      hostUsername: hostUsername,
-      bookingDate: bookingDate,
-      length: length,
-      location,
-    },
-    (err, docs) => {
-      if (err) {
-        return next({
-          log: `apiController.getLocation error :${err}`,
-          message: {
-            err: "Error occured in getLocation",
-          },
-        });
-      }
-      res.locals.booking = docs;
-      return next();
+
+  const duplicateBook = await Booking.findOne({
+    bookingDate: bookingDate,
+    hostUsername: hostUsername,
+    length: length,
+    location: location,
+    username: username,
+  });
+
+  try {
+    console.log("entered try catch as normal");
+    if (duplicateBook) {
+      console.log("Booking not created, already exists");
+      next({ err: "This booking already exists!" });
+    } else {
+      console.log("Booking being created");
+      Booking.create(
+        {
+          clientUsername: username,
+          hostUsername: hostUsername,
+          bookingDate: bookingDate,
+          length: length,
+          location,
+        },
+        (err, docs) => {
+          if (err) {
+            return next({
+              log: `apiController.getLocation error :${err}`,
+              message: {
+                err: "Error occured in getLocation",
+              },
+            });
+          }
+          res.locals.booking = docs;
+          return next();
+        }
+      );
     }
-  );
+  } catch (err) {
+    next(err);
+  }
 };
 
 // "Get booking" controller
