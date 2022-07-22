@@ -19,14 +19,16 @@ import LoginPopup from "./LoginPopup.jsx";
 import AboutPage from "./About.jsx";
 import Host from "./Host.jsx";
 import { useLocation } from "react-router";
+import GetUsername from "./GetUsername.jsx";
+import {ReactSession} from 'react-client-session'
 
 export default function UserHostings() {
+  // const username = ReactSession.get("username")
  const [hostings, setHostings] = useState([])
 
  useEffect(() => {
     axios.post("http://localhost:3000/api/allhostings", 
-    { "username": "Luigi" })
-    // also need to figure out how to pass the username to the req body from the login
+    { "token": `${sessionStorage.getItem("access_token")}` })
     .then(res => {
       setHostings(res.data)
       console.log("we are getting the axios call --->", res.data) 

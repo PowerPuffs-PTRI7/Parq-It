@@ -4,9 +4,8 @@ const getAllListingsController = {};
 
 // "Get all bookings" controller
 getAllListingsController.getAllBookings = (req, res, next) => {
-  // find all of users bookings that was stored in database associated with that username
-  const { username } = req.body;
-  Booking.find({ clientUsername: username }).then((result) => {
+  // find all of users bookings that was stored in database associated with that username  
+  Booking.find({ clientUsername: res.locals.username }).then((result) => {
     if (result) {
       console.log("Bookings found in database!");
       res.locals.bookings = result;
@@ -26,8 +25,7 @@ getAllListingsController.getAllBookings = (req, res, next) => {
 // "Get all hostings" controller
 getAllListingsController.getAllHostings = (req, res, next) => {
   // find hostings that was stored in database
-  const { username } = req.body;
-  Location.find({ hostName: username }).then((result) => {
+  Location.find({ hostName: res.locals.username }).then((result) => {
     if (result) {
       console.log("Hostings found in database!");
       res.locals.hostings = result;

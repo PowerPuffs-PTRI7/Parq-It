@@ -169,7 +169,6 @@ export default function LoggedinPage(state) {
         );
     },[]
   );
-  // { lat: 34.052235, lng: -118.243683, listings: [] }
 
   const listings = data.listings;
   console.log('the listings are', listings)
@@ -197,7 +196,6 @@ export default function LoggedinPage(state) {
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c;
 
-    // console.log(d);
     // check if the distance is within 5 miles
     if (d > 8.04672) {
       props.isVisible = false;

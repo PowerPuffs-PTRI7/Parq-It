@@ -19,14 +19,22 @@ import LoginPopup from "./LoginPopup.jsx";
 import AboutPage from "./About.jsx";
 import Host from "./Host.jsx";
 import { useLocation } from "react-router";
+import GetUsername from "./GetUsername.jsx";
+import {ReactSession} from 'react-client-session'
 
 export default function UserBookings() {
+  // const username = ReactSession.get("username")
   const [bookings, setBookings] = useState([])
 
     useEffect(() => {
        axios.post("http://localhost:3000/api/allbookings", 
-       { "username": "Luigi" })
-       // also need to figure out how to pass the username to the req body from the login
+       { "token": `${sessionStorage.getItem("access_token")}` }
+      // {
+      //   headers: {
+      //     Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+      //   },
+      // }
+       )
        .then(res => {
          setBookings(res.data)
          console.log("we are getting the axios call --->", res.data) 
@@ -44,6 +52,9 @@ export default function UserBookings() {
 
 return (
     <div className="bookingContainer">
+      {
+        //if no bookings, alert user
+      }
       {
         bookings.map(booking => 
         <div className="bookingDiv"> 

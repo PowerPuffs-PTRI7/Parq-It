@@ -25,7 +25,6 @@ router.get(
 );
 
 // get request for all locations
-
 router.post(
   "/all",
   googleRequestController.mapLocation,
@@ -36,7 +35,6 @@ router.post(
 );
 
 // post requests for new location
-
 router.post(
   "/location",
   cookieController.verifyCookie,
@@ -49,7 +47,6 @@ router.post(
 );
 
 // post rquests for new bookings
-
 router.post(
   "/booking",
   cookieController.verifyCookie,
@@ -68,27 +65,18 @@ router.get("/checkLogin", cookieController.verifyCookie, (req, res) => {
   return res.status(200).json(res.locals.username);
 });
 
-
-//get requests for all listings
-router.post("/allbookings", getAllListingsController.getAllBookings, (req, res) => {
+//post request for all bookings
+router.post("/allbookings", cookieController.verifyCookie2, getAllListingsController.getAllBookings, (req, res) => {
   return res.status(200).json(res.locals.bookings);
 })
 
-router.post("/allhostings", getAllListingsController.getAllHostings, (req, res) => {
+// post request for all hostings
+router.post("/allhostings", cookieController.verifyCookie2, getAllListingsController.getAllHostings, (req, res) => {
   return res.status(200).json(res.locals.hostings);
 })
 
 // post for filter bookings 
 // router.post("/price", apiController.getPriceLocation, (req,res,next)=> {
-//   return res.status(200).json();
-// });
-
-//testing route
-// router.post("/test", (req, res) => {
-//   return res.status(200).json("Logged in");
-// });
-
-// post for filter bookings // router.post("/price", apiController.getPriceLocation, (req,res,next)=> {
 //   return res.status(200).json();
 // });
 
