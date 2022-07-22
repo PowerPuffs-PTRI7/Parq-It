@@ -27,6 +27,7 @@ mongoose
 const apiRouter = require("./routes/api");
 const userRouter = require("./routes/user");
 const stripeRouter = require("./routes/stripe");
+const apiController = require("./controllers/apiController");
 
 //handle rerouted builds
 //app.use("/success/build", express.static(path.join(__dirname, "../../build")));
@@ -36,15 +37,18 @@ app.use("/api/users", userRouter);
 app.use("/api", apiRouter);
 app.use("/checkout/", stripeRouter);
 
-app.post("/order", (req, res) => {
-  console.log("This confirms connection to the server");
-  console.log("-------------BODY", req.body);
-  console.log("-------------TOKEN", req.headers);
-  //push this through verify cookie
-  //bookingAPI
+app.post(
+  "/order",
+  cookieController.verifyCookie,
+  apiController.createBookingAPI,
+  (req, res) => {
+    console.log("This confirms connection to the server");
+    console.log("-------------BODY", req.body);
+    console.log("-------------TOKEN", req.headers);
 
-  return res.status(200);
-});
+    return res.status(200);
+  }
+);
 
 // statically serve everything in the build folder on the route '/build'
 app.use("/build", express.static(path.join(__dirname, "../build")));
