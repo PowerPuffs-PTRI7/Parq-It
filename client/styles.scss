@@ -173,22 +173,34 @@ img.archway {
   z-index: 1;
 }
 
-.bookingDiv {
-  border: "5px";
-  border-color: #36454F;
-  scroll-behavior: smooth;
-  overflow-y: scroll; 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  .bookingDiv {
+    border: solid lightblue;
+    display: flex;
+    flex-direction: row;
+    border-radius: 5%;
+    border-radius: 25px;
+    background: rgb(149, 187, 200);
+    background-position: left top;
+    background-repeat: repeat;
+    padding: 20px;
+    width: 600px;
+    height: 80px;
+    justify-content: space-between;
+  }
 
-}
-
-.hostingDiv {
-  scroll-behavior: smooth;
-  overflow-y: scroll; 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  .bookingContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
   
-}
+  .bookingBtns {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: stretch;
+  }
+

@@ -37,14 +37,30 @@ export default function UserHostings() {
   }, []
 );
 
+const dateFunc = (hostingDate) => {
+  const date = new Date(hostingDate)
+  return date.toLocaleDateString()
+ }
+
 return (
-    <div>
-    <ul>
-      {
-        //add key to each li
-        hostings.map(hosting =>
-          <li > {hosting.location} </li>)
-      }
-    </ul>
-   </div>
+  <div className="bookingContainer">
+  {
+    hostings.map(hosting=> 
+    <div className="bookingDiv"> 
+    <b>{hosting.address}
+    <br></br>
+    Price: ${hosting.price} Mattbucks
+    <br></br>
+    Options: {hosting.options}
+    <br></br>
+    Size: {hosting.size}
+    </b>
+    <div className="bookingBtns">
+    <button> See Stats </button>
+    <button> Modify Hosting </button>
+    <button> Add Photo </button>
+    </div>
+    </div>) 
+  }
+</div>
 )}

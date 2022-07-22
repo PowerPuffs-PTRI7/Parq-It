@@ -28,13 +28,13 @@ const images = [
   {
     url: 'https://codesmith-iteration-project.s3.us-west-1.amazonaws.com/jorgina-nkosi-jeQz9ULm8iE-unsplash.jpg',
     title: 'Bookings',
-    width: '40%',
+    width: '100%',
     link: '/userbookings'
   },
   {
     url: 'https://codesmith-iteration-project.s3.us-west-1.amazonaws.com/raban-haaijk-wftNpcjCHT4-unsplash.jpg',
     title: 'Hostings',
-    width: '30%',
+    width: '100%',
     link: '/userhostings'
   }
 ];
@@ -292,9 +292,9 @@ export default function LoggedinPage(state) {
         </div>
         <div
           className="rightTiles"
-          style={{ width: "50%", height: "100%", float: "right" }}
+          style={{ display: "flex", width: "50%", height: "100%", float: "right" }}
         >
-           <Box sx={{ display: 'flex', flexDirection: 'column', flexWrap: 'wrap', minWidth: 400, width: '100%' }}>
+           <Box sx={{ flexWrap: 'wrap', minWidth: 400, height: '100%', width: '100%'}}>
       {images.map((image) => (
         <>
         <ImageButton 

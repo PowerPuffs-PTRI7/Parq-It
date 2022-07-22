@@ -37,13 +37,29 @@ export default function UserBookings() {
      }, []
    );
 
+   const dateFunc = (bookingDate) => {
+    const date = new Date(bookingDate)
+    return date.toLocaleDateString()
+   }
+
 return (
-    <div>
- <ul>
+    <div className="bookingContainer">
       {
         bookings.map(booking => 
-        <li key={booking.hostUsername}> {booking.location} {booking.bookingDate} {booking.length}</li>)
+        <div className="bookingDiv"> 
+        <b>{booking.location}
+        <br></br>
+        Start Date: {dateFunc(booking.bookingDate)} 
+        <br></br>
+        Booking Duration: {booking.length} days
+        </b>
+        {/* we need to add the price */}
+        <div className="bookingBtns">
+        <button> Cancel </button>
+        <button> Modify </button>
+        <button> View Spot </button>
+        </div>
+        </div>) 
       }
-    </ul>
    </div>
 )}
