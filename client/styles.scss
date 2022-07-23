@@ -178,7 +178,7 @@ img.archway {
   display: flex;
 }
 
-  .bookingDiv {
+  .listingDiv {
     border: solid lightblue;
     display: flex;
     flex-direction: row;
@@ -193,7 +193,7 @@ img.archway {
     justify-content: space-between;
   }
 
-  .bookingContainer {
+  .listingContainer {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -202,7 +202,7 @@ img.archway {
     align-items: center;
   }
   
-  .bookingBtns {
+  .listingBtns {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

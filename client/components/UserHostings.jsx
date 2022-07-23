@@ -19,11 +19,8 @@ import LoginPopup from "./LoginPopup.jsx";
 import AboutPage from "./About.jsx";
 import Host from "./Host.jsx";
 import { useLocation } from "react-router";
-import GetUsername from "./GetUsername.jsx";
-import {ReactSession} from 'react-client-session'
 
 export default function UserHostings() {
-  // const username = ReactSession.get("username")
  const [hostings, setHostings] = useState([])
 
  useEffect(() => {
@@ -44,11 +41,20 @@ const dateFunc = (hostingDate) => {
   return date.toLocaleDateString()
  }
 
+ if (hostings.length === 0) {
+  return (
+    <div className="listingContainer">
+        <div className="listingDiv"> 
+        <b>{"No hostings found"}</b>
+       </div>
+   </div>
+  )
+} else {
 return (
-  <div className="bookingContainer">
+  <div className="listingContainer">
   {
     hostings.map(hosting=> 
-    <div className="bookingDiv"> 
+    <div className="listingDiv"> 
     <b>{hosting.address}
     <br></br>
     Price: ${hosting.price} Mattbucks
@@ -57,7 +63,7 @@ return (
     <br></br>
     Size: {hosting.size}
     </b>
-    <div className="bookingBtns">
+    <div className="listingBtns">
     <button> See Stats </button>
     <button> Modify Hosting </button>
     <button> Add Photo </button>
@@ -65,4 +71,6 @@ return (
     </div>) 
   }
 </div>
-)}
+)
+}
+}

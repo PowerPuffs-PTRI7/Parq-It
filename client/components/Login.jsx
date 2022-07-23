@@ -8,8 +8,6 @@ import Button from "@mui/material/Button";
 import SignupPopup from "./SignupPopup.jsx";
 import { Signup } from "./Signup.jsx";
 import { useEffect } from "react";
-import GetUsername from "./GetUsername.jsx";
-import {ReactSession} from 'react-client-session'
 
 export const Login = (props) => {
   const [createUsername, setCreateUsername] = useState("");
@@ -33,8 +31,6 @@ export const Login = (props) => {
       .then((res) => {
         console.log("response from axios:", res);
         sessionStorage.setItem("access_token", res.data);
-        // ReactSession.setStoreType("sessionStorage")
-        // ReactSession.set("username", username);
         if (res.status === 201) {
           setLoggedIn(true);       
         }

@@ -19,11 +19,8 @@ import LoginPopup from "./LoginPopup.jsx";
 import AboutPage from "./About.jsx";
 import Host from "./Host.jsx";
 import { useLocation } from "react-router";
-import GetUsername from "./GetUsername.jsx";
-import {ReactSession} from 'react-client-session'
 
 export default function UserBookings() {
-  // const username = ReactSession.get("username")
   const [bookings, setBookings] = useState([])
 
     useEffect(() => {
@@ -50,22 +47,28 @@ export default function UserBookings() {
     return date.toLocaleDateString()
    }
 
+if (bookings.length === 0) {
+  return (
+    <div className="listingContainer">
+        <div className="listingDiv"> 
+        <b>{"No bookings found"}</b>
+       </div>
+   </div>
+  )
+} else {
 return (
-    <div className="bookingContainer">
-      {
-        //if no bookings, alert user
-      }
+    <div className="listingContainer">
       {
         bookings.map(booking => 
-        <div className="bookingDiv"> 
+        <div className="listingDiv"> 
         <b>{booking.location}
         <br></br>
         Start Date: {dateFunc(booking.bookingDate)} 
         <br></br>
         Booking Duration: {booking.length} days
         </b>
-        {/* we need to add the price */}
-        <div className="bookingBtns">
+        {/* we need to add the price which is missing from the db*/}
+        <div className="listingBtns">
         <button> Cancel </button>
         <button> Modify </button>
         <button> View Spot </button>
@@ -73,4 +76,6 @@ return (
         </div>) 
       }
    </div>
-)}
+)
+}
+}
