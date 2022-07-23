@@ -191,7 +191,8 @@ apiController.uploadPhoto = (req, res, next) => {
   const params = {
       Bucket: 'codesmith-iteration-project',
       Key: req.files.image.name, // File name you want to save as in S3
-      Body: fileContent
+      Body: fileContent,
+      ContentType: 'image/jpeg'
   };
 
   // Uploading files to the bucket
