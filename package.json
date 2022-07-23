@@ -72,6 +72,7 @@
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.18",
     "prettier": "^2.7.1",
+    "react-client-session": "^0.0.8",
     "react-scripts": "4.0.3",
     "rollup-plugin-styles": "^3.14.1",
     "sass-loader": "^12.3.0",
