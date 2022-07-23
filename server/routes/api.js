@@ -62,6 +62,7 @@ router.post(
 );
 
 router.get("/checkLogin", cookieController.verifyCookie, (req, res) => {
+  console.log("check login backend hit");
   return res.status(200).json(res.locals.username);
 });
 

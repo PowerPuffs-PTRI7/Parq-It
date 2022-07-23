@@ -26,6 +26,7 @@ const App = (props) => {
 
   useEffect (() => {
     if (isInitialMount.current && session_id) {
+      console.log('Check Login hit')
       axios.get('/api/checkLogin', {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
@@ -64,12 +65,8 @@ const App = (props) => {
             <Route exact path="/dashboard">
               <Dashboard />
             </Route>
-            {/* <Route exact path="/success">
-              <p>Whats up!</p>
-              <LandingPage success={true} />
-            </Route> */}
-            <Route path="/checkout">
-              <LandingPage success={true} />
+            <Route path="/checkout/:hostUsername/:bookingDate/:length/:location">
+              <LandingPage success={true} session_id={session_id}/>
             </Route>
             <Route path="*">
               <FourOhhhFour />
