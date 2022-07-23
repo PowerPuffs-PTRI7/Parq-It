@@ -53,7 +53,7 @@ export default function LandingPage(props) {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3000/api/all", {
+      .post("/api/all", {
         address: address,
       })
       .then((res) => {
@@ -75,7 +75,7 @@ export default function LandingPage(props) {
       console.log(params); // :hostUsername/:bookingDate/:length/:location
       console.log('success is indeed true')
       axios
-        .post('http://localhost:3000/order', 
+        .post('/order', 
         {
           hostUsername: params.hostUsername,
           bookingDate: params.bookingDate,

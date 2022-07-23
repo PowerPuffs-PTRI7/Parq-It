@@ -36,15 +36,15 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./client/index.html",
+      template: "./client/index.html"
     }),
   ],
   devServer: {
     // port: 8080,
-    // static: {
-    //   directory: path.resolve(__dirname, "build"),
-    //   publicPath: "/",
-    // },
+    static: {
+      directory: path.resolve(__dirname, "build"),
+      publicPath: "/",
+    },
     historyApiFallback: true,
     open: true,
     hot: true,
@@ -62,10 +62,10 @@ module.exports = {
         target: "http://localhost:3000/",
         secure: false,
       },
-      // "/checkout/**": {
-      //   target: "http://localhost:3000/",
-      //   secure: false,
-      // },
+      "/order/**": {
+        target: "http://localhost:3000/",
+        secure: false,
+      },
     },
   },
 };

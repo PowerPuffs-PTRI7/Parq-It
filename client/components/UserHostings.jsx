@@ -27,8 +27,8 @@ export default function UserHostings() {
     axios.post("http://localhost:3000/api/allhostings", 
     { "token": `${sessionStorage.getItem("access_token")}` })
     .then(res => {
-      setHostings(res.data)
       console.log("we are getting the axios call --->", res.data) 
+      setHostings(res.data)
     })
     .catch((err) => {
       console.log(`Error occured in useEffect: ${err}`);
@@ -66,7 +66,8 @@ return (
     <div className="listingBtns">
     <button> See Stats </button>
     <button> Modify Hosting </button>
-    <button> Add Photo </button>
+    {/* <button> Add Photo </button> */}
+    <a target='_blank' href={hosting.imageUrl}><img src={hosting.imageUrl} style={{height: '50px', width: '50px'}}/></a>
     </div>
     </div>) 
   }

@@ -54,7 +54,7 @@ export default function Dashboard(state) {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/api/all", {
+      .post("/api/all", {
         address: address,
       })
       .then((res) => {
