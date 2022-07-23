@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Host from "./Host.jsx";
 import { Link } from "react-router-dom";
 import logo from "../assets/blueParq.png";
-import AboutPage from "./About.jsx";
+import UserPageButtons from "./UserPageButtons.jsx";
 import LoginButton from "./LoginButton.jsx";
 
 
@@ -38,7 +38,7 @@ function Navbar(props) {
                 <img className="websiteLogo" src={logo} />
               </Button>
             </Link>
-            <AboutPage />
+            <UserPageButtons user_id={props.userInfo.user_id} />
             <LoginButton user_id={props.userInfo.user_id} setUserInfo={props.setUserInfo}/>
           </Toolbar>
         </Box>

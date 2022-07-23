@@ -11,6 +11,10 @@ import { makeStyles } from "@material-ui/core";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@mui/material/TextField";
+import LoginPopup from "./LoginPopup.jsx"
+import AboutPage from "./About.jsx"
+import Host from "./Host.jsx"
+import LoggedinPage from "./LoggedinPage.jsx";
 import Confirmation from "./Confirmation.jsx";
 import { useParams } from "react-router-dom";
 

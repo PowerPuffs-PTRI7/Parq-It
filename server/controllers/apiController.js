@@ -74,12 +74,7 @@ apiController.getAllLocation = (req, res, next) => {
     return next();
   });
 };
-// const bookingSchema = new Schema({
-//   clientUsername: { type: String, required: true },
-//   hostUsername: { type: String, required: true },
-//   bookingDate: { type: String, required: true },
-//   location: { type: String, required: true },
-// });
+
 // "Create booking" controller
 apiController.createBooking = (req, res, next) => {
   //get input from user request (TBD)

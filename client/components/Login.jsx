@@ -32,7 +32,7 @@ export const Login = (props) => {
         console.log("response from axios:", res);
         sessionStorage.setItem("access_token", res.data);
         if (res.status === 201) {
-          setLoggedIn(true);
+          setLoggedIn(true);       
         }
       })
       .catch((err) => console.log(err));
@@ -40,7 +40,7 @@ export const Login = (props) => {
 
   if (loggedIn) {
     setTimeout(() => {
-      history.push("/dashboard");
+      history.push("/userpage");
       props.setOpen(false);
       props.setUserInfo({user_id: createUsername});
     }, 0);
