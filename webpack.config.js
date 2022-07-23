@@ -5,7 +5,7 @@ module.exports = {
   entry: "./client/index.js",
   output: {
     path: path.resolve(__dirname, "build"),
-    publicPath: "/build/",
+    publicPath: "/",
     filename: "bundle.js",
   },
   mode: "development",
@@ -36,15 +36,15 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./client/index.html",
+      template: "./client/index.html"
     }),
   ],
   devServer: {
     // port: 8080,
-    // static: {
-    //   directory: path.resolve(__dirname, "build"),
-    //   publicPath: "/",
-    // },
+    static: {
+      directory: path.resolve(__dirname, "build"),
+      publicPath: "/",
+    },
     historyApiFallback: true,
     open: true,
     hot: true,

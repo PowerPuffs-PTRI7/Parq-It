@@ -36,6 +36,7 @@ export default function HostForm() {
           price: price,
           options: options,
           size: size,
+          imageUrl: imageUrl
         },
         {
           headers: {

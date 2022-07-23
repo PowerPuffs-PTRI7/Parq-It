@@ -25,6 +25,7 @@ const locationSchema = new Schema({
   options: { type: String, required: true },
   size: { type: Number, required: true },
   coordinates: { lat: Number, lng: Number },
+  imageUrl: { type: String },
 });
 
 const User = mongoose.model("user", userSchema);

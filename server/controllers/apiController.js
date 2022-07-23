@@ -12,7 +12,7 @@ apiController.createLocation = async (req, res, next) => {
   // When host adds listing, create new location in the db
   try {
     const hostName = res.locals.username;
-    const { address, price, options, size } = req.body;
+    const { address, price, options, size, imageUrl } = req.body;
     const coordinates = res.locals.data;
     console.log("hit the create location middleware");
     console.log(coordinates);
@@ -25,6 +25,7 @@ apiController.createLocation = async (req, res, next) => {
       options,
       size,
       coordinates,
+      imageUrl
     }).then((locationSaved) => {
       return next();
     });
