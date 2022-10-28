@@ -1,1 +1,1 @@
-##Private Parking Spot Rental App
+Private Parking Spot Rental App
